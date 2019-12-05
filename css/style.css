@@ -36,6 +36,7 @@ header nav ul li{
 /* Sliders Zone*/
 #slider{
     height: 600px;
+    display: flex;
 }
 
 /* zone maps */

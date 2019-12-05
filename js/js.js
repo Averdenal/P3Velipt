@@ -1,3 +1,34 @@
+var sliderData = [{"texte":"demo", "img":""},{"texte":"", "img":""},{"texte":"", "img":""},{"texte":"", "img":""},{"texte":"", "img":""}]
+var slider = document.getElementById("slider");
+
+
+for(var i = 0; i< sliderData.length; i++){
+    var imgSlider = document.createElement("img");
+    imgSlider.src = sliderData[i].img;
+    imgSlider.alt = sliderData[i].texte;
+    console.log(sliderData[i].texte);
+
+    var itemSlider = document.createElement("div");
+    
+    if(i == 2){
+        itemSlider.style.backgroundColor = "red";
+        itemSlider.style.flex = 10;
+    }else{
+        itemSlider.style.backgroundColor = "blue";
+        itemSlider.style.flex = 1;
+    }
+
+    itemSlider.appendChild(imgSlider)
+
+    document.getElementById("slider").appendChild(itemSlider);
+}
+
+
+
+
+
+
+
 class Station {
     constructor(Station_velo) {
       this.OnVelo = Station_velo.available_bikes;
