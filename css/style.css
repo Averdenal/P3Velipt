@@ -1,0 +1,59 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+/* Entête zone */
+header{
+    height: 60px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+header a{
+    font-size: 1.3rem;
+}
+header #header-logo{
+    flex: 1;
+}
+header nav{
+    flex:5;
+    display: flex;
+    justify-content: flex-end;
+}
+header nav ul{
+    display: inline-flex;
+    margin: 0 2em;
+}
+header nav ul li{
+    margin:0 1em;
+}
+
+/* Sliders Zone*/
+#slider{
+    height: 600px;
+}
+
+/* zone maps */
+#maps-zone{
+    display: flex;
+    height: 600px;
+    padding: 2em;
+}
+#maps-zone #maps{
+    flex: 2;
+    background-color: red;
+}
+#maps-zone #info{
+    flex:1;
+    background-color: blueviolet;
+}
+/* Pied de Page zone */
+footer{
+    height: 250px;
+    background-color: black;
+}
