@@ -37,6 +37,15 @@ header nav ul li{
 #slider{
     height: 600px;
     display: flex;
+    transform-style: preserve-3d;
+}
+#slider figure{
+
+    transform: perspective(2000px) rotateY(45deg);
+}
+#slider figure img{
+
+    height: 100%;
 }
 
 /* zone maps */
