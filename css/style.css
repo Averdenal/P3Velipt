@@ -1,4 +1,4 @@
-html, body{
+html, body, figure{
     margin: 0;
     padding: 0;
 }
@@ -34,19 +34,6 @@ header nav ul li{
 }
 
 /* Sliders Zone*/
-#slider{
-    height: 600px;
-    display: flex;
-    transform-style: preserve-3d;
-}
-#slider figure{
-
-    transform: perspective(2000px) rotateY(45deg);
-}
-#slider figure img{
-
-    height: 100%;
-}
 
 /* zone maps */
 #maps-zone{
