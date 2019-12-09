@@ -4,28 +4,56 @@ var dataSlider =
     {"textInfo":"Demo2", "URL":"imgs/sliders/slider1jpg.jpg"},
     {"textInfo":"Demo3", "URL":"imgs/sliders/slider1jpg.jpg"}
 ]
-/*
- * zone de création de slider  
- */
-var sliderzone = document.getElementById("slider");
 
-class sliderCrea{
+class carousel{
+    /**
+     * @param  {HTMLElement} element
+     * @param  {object} options.slidersToScroll nombre d'éléments a bouger
+     * @param  {object} options.sliderVisible nomvre d'élément visible
+     * @param  {objetJson} datas objet json 
+     */
+    constructor(element, options = {}, data){
+        this.data = data
+        this.element = element
+        this.children = data
+        this.options = Object.assign({},{
+            slidersToScroll:1,
+            sliderVisible:3
+        }, options)
+        let root = this.CreationDivClass('carousel','div')
+        let container = this.CreationDivClass('carousel__container','div')
+        root.appendChild(container)
+        this.element.appendChild(root)
+        this.children.forEach(child => {
+            let item = this.CreationDivClass('carousel__item','figure')
+            item.style.width = (100 / 3) +"%"
 
-    constructor(text, url, zoneslider){
-        this.figure = document.createElement("figure");
-        this.figurecap = document.createElement("figcaption");
-        this.image = document.createElement("img");
+            let img = document.createElement('img')
+            img.src = child.URL
 
-        this.figurecap.textContent = text;
-        this.image.src = url;
-        
-        this.figure.appendChild(this.image);
-        this.figure.appendChild(this.figurecap);
-        zoneslider.appendChild(this.figure);
+            let description = document.createElement('figcaption')
+            description.setAttribute('class','description')
+            description.textContent = child.textInfo
+            
+            item.appendChild(img)
+            item.appendChild(description)
 
+            container.appendChild(item)
+        });
     }
+    CreationDivClass(Class,HTMLElement){
+        let div = document.createElement(HTMLElement)
+        div.setAttribute('class',Class)
+        return div
+    }
+    
+
 }
-for (let i = 0; i < dataSlider.length; i++) {
-    const element = dataSlider[i];
-    new sliderCrea(element.textInfo,element.URL,sliderzone);
-}
+
+document.addEventListener("DOMContentLoaded", function(){
+    new carousel(document.querySelector('#slider'), {
+        slidersToScroll: 3,
+        sliderVisible:3
+    },dataSlider)
+})
+
