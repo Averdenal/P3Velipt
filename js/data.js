@@ -13,14 +13,27 @@ var jqxhr = $.getJSON( URL, function() {
   });
   
   class Station{
-    
-    constructor(name,adresse,position,status, veloDispo, maxplaces){
+
+    constructor(name,adresse,position,status, veloDispo, maxPlaces){
       this.name = this.nameChange(name)
       this.adresse = adresse
       this.position = position
       this.status = status
       this.veloDispo = veloDispo
-      this.maxplaces = maxplaces
+      this.maxPlaces = maxPlaces
+      this.restant = null
+    }
+
+    
+    colorChoix(veloDispo,maxPlaces,element){
+      console.log(veloDispo/maxPlaces)
+      if ((veloDispo/maxPlaces)> 0.5){
+        element.style.backgroundColor = "green"
+      }else if(((veloDispo/maxPlaces)< 0.5) && ((veloDispo/maxPlaces)>= 0.25)) {
+        element.style.backgroundColor = "orange"
+      }else{
+        element.style.backgroundColor = "red"
+      }
     }
 
     /**
@@ -39,11 +52,12 @@ var jqxhr = $.getJSON( URL, function() {
 
     HTML_Contruction(){
       var div = document.createElement("div")
+      this.colorChoix(this.veloDispo,this.maxPlaces,div)
       div.setAttribute('class','js-item')
       div.setAttribute('data-lat',this.position.lat)
       div.setAttribute('data-lng',this.position.lng)
       div.setAttribute('data-dispo',this.veloDispo)
-      div.setAttribute('data-maxplaces',this.maxplaces)
+      div.setAttribute('data-maxplaces',this.maxPlaces)
       var p = document.createElement('h3')
       p.textContent = this.name
       div.appendChild(p)
