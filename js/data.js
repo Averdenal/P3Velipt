@@ -47,6 +47,8 @@ var jqxhr = $.getJSON( URL, function() {
         if (name.substr(0, 1) === "-"){
           name = name.substr(1)
         }
+      }else if(name.substr(0,2) ==='00'){
+        name = name.substr(6)
       }
       return name
     }
@@ -63,10 +65,10 @@ var jqxhr = $.getJSON( URL, function() {
       h3.textContent = this.name
       div.appendChild(h3)
       
-      var p = document.createElement('p')
+      /*var p = document.createElement('p')
       p.textContent = "Station n° " +this.number
       p.setAttribute('class','station')
-      div.appendChild(p)
+      div.appendChild(p)*/
 
       var adresse = document.createElement('p')
       adresse.textContent = "Adresse: " +this.adresse
