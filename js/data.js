@@ -59,29 +59,36 @@ var jqxhr = $.getJSON( URL, function() {
       div.setAttribute('data-dispo',this.veloDispo)
       div.setAttribute('data-maxplaces',this.maxPlaces)
 
-      var p = document.createElement('p')
-      p.textContent = "Station n° " +this.number
-      div.appendChild(p)
-
       var h3 = document.createElement('h3')
       h3.textContent = this.name
       div.appendChild(h3)
-
-      p = document.createElement('p')
-      p.textContent = "Adresse: " +this.adresse
+      
+      var p = document.createElement('p')
+      p.textContent = "Station n° " +this.number
+      p.setAttribute('class','station')
       div.appendChild(p)
 
-      p = document.createElement('p')
-      p.textContent = "Vélo disponibles: " +this.veloDispo+"/"+this.maxPlaces
-      div.appendChild(p)
+      var adresse = document.createElement('p')
+      adresse.textContent = "Adresse: " +this.adresse
+      div.appendChild(adresse)
+
+      var vel = document.createElement('p')
+      vel.setAttribute('class','vDispo')
+      vel.textContent = "Vélo disponibles: " +this.veloDispo+"/"+this.maxPlaces
+      div.appendChild(vel)
       
       var bt = document.createElement('div')
       bt.setAttribute('class','btStyle')
+
       var btZone = document.createElement('div')
       btZone.setAttribute('class','btStyle-zone')
-      p.textContent = "Réserver"
-      bt.appendChild(p)
+
+      var btR = document.createElement('p')
+      btR.textContent = "Réserver"
+      bt.appendChild(btR)
+
       bt.appendChild(btZone)
+
       var divPour100 =document.createElement('div')
       divPour100.setAttribute("class","restant")
       divPour100.style.width = (this.veloDispo/this.maxPlaces)*100 + "%"

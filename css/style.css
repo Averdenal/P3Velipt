@@ -10,7 +10,8 @@ a{
     color: white;
 }
 .btStyle{
-    position: relative;
+    position: absolute;
+    bottom: 15px;
     height: 25px;
     width: 100px;
 }
@@ -24,7 +25,7 @@ a{
     height: 100%;
 }
 .btStyle p:hover~ .btStyle-zone{
-    animation: rempl .5s forwards;
+    animation: rempl .3s forwards;
 }
 .btStyle-zone{
     color: black;
@@ -79,7 +80,7 @@ header nav ul li{
 }
 .carousel .carousel__container{
     width: 300%;
-    animation: animat 10s infinite;
+    animation: animate 10s infinite;
 }
 @keyframes animat{
     0%{
@@ -120,11 +121,15 @@ header nav ul li{
     position: relative;
     margin-bottom:10px;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.11);
+    background-color: rgba(0, 0, 0, 0.05);
     height: 150px;
 }
 #info .js-item h3{
+    z-index: 1;
+    text-align: right;
     margin:0;
+    font-size: 1.7rem;
+    color: rgba(0, 0, 0, 0.8);
 }
 .restant{
     height: 5px;
@@ -132,6 +137,18 @@ header nav ul li{
     left: 0;
     bottom: 0;
     border-radius: 0 5px 5px 0;
+}
+.vDispo{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 12px;
+    color:rgba(0,0,0,.5);
+}
+.station{
+    position: absolute;
+    top: 5px;
+    color:rgba(0,0,0,.6);
 }
 /* Pied de Page zone */
 footer{
