@@ -2,9 +2,46 @@ html, body, figure{
     margin: 0;
     padding: 0;
 }
+p{
+    margin-top:0;
+}
 a{
     text-decoration: none;
     color: white;
+}
+.btStyle{
+    position: relative;
+    height: 25px;
+    width: 100px;
+}
+.btStyle p{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+.btStyle p:hover~ .btStyle-zone{
+    animation: rempl .5s forwards;
+}
+.btStyle-zone{
+    color: black;
+    position: absolute;
+    background-color: green;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    z-index: 9;
+}
+
+@keyframes rempl{
+    from{
+        width: 40%;
+    }to{
+        width: 100%;
+    }
 }
 
 /* Entête zone */
@@ -80,17 +117,24 @@ header nav ul li{
     padding:0 10px;
 }
 #info .js-item{
+    position: relative;
     margin-bottom:10px;
     padding: 10px;
-    background-color: yellow;
+    background-color: rgba(0, 0, 0, 0.11);
     height: 150px;
-    border-radius: 10px;
 }
 #info .js-item h3{
     margin:0;
 }
+.restant{
+    height: 5px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 0 5px 5px 0;
+}
 /* Pied de Page zone */
 footer{
-    height: 250px;
+    height: 50px;
     background-color: black;
 }

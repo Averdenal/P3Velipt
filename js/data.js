@@ -5,7 +5,7 @@ var jqxhr = $.getJSON( URL, function() {
   .always(function() {
     jqxhr.responseJSON.forEach(element => {
       console.log( element );
-      var station = new Station(element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
+      var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
       console.log (station.name)
       $info.appendChild(station.HTML_Contruction())
 
@@ -14,7 +14,8 @@ var jqxhr = $.getJSON( URL, function() {
   
   class Station{
 
-    constructor(name,adresse,position,status, veloDispo, maxPlaces){
+    constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
+      this.number = number
       this.name = this.nameChange(name)
       this.adresse = adresse
       this.position = position
@@ -52,15 +53,43 @@ var jqxhr = $.getJSON( URL, function() {
 
     HTML_Contruction(){
       var div = document.createElement("div")
-      this.colorChoix(this.veloDispo,this.maxPlaces,div)
       div.setAttribute('class','js-item')
       div.setAttribute('data-lat',this.position.lat)
       div.setAttribute('data-lng',this.position.lng)
       div.setAttribute('data-dispo',this.veloDispo)
       div.setAttribute('data-maxplaces',this.maxPlaces)
-      var p = document.createElement('h3')
-      p.textContent = this.name
+
+      var p = document.createElement('p')
+      p.textContent = "Station n° " +this.number
       div.appendChild(p)
+
+      var h3 = document.createElement('h3')
+      h3.textContent = this.name
+      div.appendChild(h3)
+
+      p = document.createElement('p')
+      p.textContent = "Adresse: " +this.adresse
+      div.appendChild(p)
+
+      p = document.createElement('p')
+      p.textContent = "Vélo disponibles: " +this.veloDispo+"/"+this.maxPlaces
+      div.appendChild(p)
+      
+      var bt = document.createElement('div')
+      bt.setAttribute('class','btStyle')
+      var btZone = document.createElement('div')
+      btZone.setAttribute('class','btStyle-zone')
+      p.textContent = "Réserver"
+      bt.appendChild(p)
+      bt.appendChild(btZone)
+      var divPour100 =document.createElement('div')
+      divPour100.setAttribute("class","restant")
+      divPour100.style.width = (this.veloDispo/this.maxPlaces)*100 + "%"
+      this.colorChoix(this.veloDispo,this.maxPlaces,divPour100)
+      div.appendChild(bt)
+      div.appendChild(divPour100)
+
+
       return div
     }
   }
