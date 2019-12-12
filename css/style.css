@@ -78,6 +78,17 @@ header nav ul li{
     flex:1;
     background-color: blueviolet;
     overflow: auto;
+    padding: 10px;
+}
+#info .js-item{
+    margin:10px 0;
+    padding: 10px;
+    background-color: yellow;
+    height: 200px;
+    border-radius: 10px;
+}
+#info .js-item h3{
+    margin:0;
 }
 /* Pied de Page zone */
 footer{
