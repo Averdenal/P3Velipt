@@ -2,6 +2,9 @@ html, body, figure{
     margin: 0;
     padding: 0;
 }
+ul{
+    list-style: none;
+}
 body{
     background: linear-gradient(110deg,#e6da37 60%, #e4973f 60%);
 }

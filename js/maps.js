@@ -1,39 +1,31 @@
-let $map = document.querySelector("#map")
-/*ttps://maps.googleapis.com/maps/api/js*/
-
-class Maps{
+class leafletMaps{
     constructor(){
-        this.maps = null
+        this.map = null
     }
     /**
-     * charge la carte sur un element DOM
-     * @param {HTMLElement} element 
+     * chargement de la map
+     * @param {HTML_Element} element 
      */
-    load(element){
-        $script('https://maps.googleapis.com/maps/api/js', () => {
-            var center = {lat: 62.323907, lng: -150.109291}    
-            this.map = new google.maps.Map(element,{
-                zoom : 11,
-                center : center
-            })  
+    async laod(element){
+        return new Promise((resolve,reject) => {
+            this.map = L.map(element).setView([47.2190275447384, -1.56341948405375], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+            {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(this.map)
+            resolve()
         })
     }
-
-    /**
-     * ajoute un marquer sur la carte
-     * @param {string} lat 
-     * @param {string} lng 
-     * @param {string} text 
-     */
-    addMarker(lat,lng,text){
-        let marker = google.maps.Marker({
-            position : lat, lng,
-            map : this.maps
+    addMarket(lat,lng,info){
+        L.popup({
+            closeButton:false,
+            autoClose:false,
+            closeOnEscapeKey:false,
+            closeOnClick:false,
+            className:'popclass'
         })
+        .setLatLng([lat, lng])
+        .setContent(info)
+        .openOn(this.map);
     }
-}
-
-if ($map !== null){
-    let map = new Maps()
-    map.load($map)
 }
