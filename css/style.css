@@ -155,6 +155,24 @@ header nav ul li{
     top: 5px;
     color:rgba(0,0,0,.6);
 }
+.active-info{
+    background-color: rgba(255, 255, 255, 1)!important;
+}
+/*.popclass{
+    width: 40px;
+}
+.popclass .leaflet-popup-content-wrapper{
+    width: 30px;
+    height: 30px;
+    border-radius: 20px ;
+}
+.popclass .leaflet-popup-content{
+    width: auto !important;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
 /* Pied de Page zone */
 footer{
     height: 50px;

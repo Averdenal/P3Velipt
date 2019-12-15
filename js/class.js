@@ -17,10 +17,8 @@ class leafletMaps{
             resolve()
         })
     }
-    addMarket(lat,lng,info){
-      let point = [lat,lng]
-      this.bounds.push(point)
-        L.popup({
+    addMarket(lat,lng,maxPlaces,veloDispo){
+      /*L.popup({
             closeButton:false,
             autoClose:false,
             closeOnEscapeKey:false,
@@ -28,8 +26,34 @@ class leafletMaps{
             className:'popclass'
         })
         .setLatLng(point)
-        .setContent(info)
-        .openOn(this.map);
+        .setContent('<i class="fa fa-bicycle"></i>')
+        .openOn(this.map);*/
+        let point = [lat,lng]
+        this.bounds.push(point)
+        L.marker(point,{
+          icon: this.selectIcon(veloDispo,maxPlaces)
+        }).addTo(this.map);
+    }
+    selectIcon(veloDispo,maxPlaces){
+      console.log(veloDispo/maxPlaces)
+      let urlIcon = null
+      if(veloDispo/maxPlaces >0.5){
+        urlIcon = 'imgs/icons/good.png'
+      }else if((veloDispo/maxPlaces >0.25)&&(veloDispo/maxPlaces)<=0.5){
+        urlIcon = 'imgs/icons/ok.png'
+      }else if((veloDispo/maxPlaces <= 0.25)&&(veloDispo/maxPlaces >0)){
+        urlIcon = 'imgs/icons/bad.png'
+      }else{
+        urlIcon = 'imgs/icons/marker.png'
+      }
+      console.log(urlIcon)
+      var myIcon = L.icon({
+        iconUrl: urlIcon,
+        iconSize: [38, 38],
+        iconAnchor: [22, 38],
+        
+      });
+    return myIcon
     }
     centre(){
       this.map.fitBounds(this.bounds)
@@ -79,6 +103,12 @@ class Station{
     HTML_Contruction(){
       var div = document.createElement("div")
       div.setAttribute('class','js-item')
+      div.addEventListener('mouseover',function(){
+        div.classList.add('active-info')
+      })
+      div.addEventListener('mouseleave',function(){
+        div.classList.remove('active-info')
+      })
 
       var h3 = document.createElement('h3')
       h3.textContent = this.name

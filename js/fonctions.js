@@ -17,7 +17,7 @@ const initMap = async function(){
             var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
             $info.appendChild(station.HTML_Contruction())
             console.log("A: "+ element.position.lat + "B:" + element.position.lng)
-          map.addMarket(element.position.lat,element.position.lng,element.name)
+          map.addMarket(element.position.lat,element.position.lng,element.bike_stands,element.available_bikes)
         });
         map.centre()
 
