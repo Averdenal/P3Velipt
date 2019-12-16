@@ -18,16 +18,6 @@ class leafletMaps{
         })
     }
     addMarket(lat,lng,maxPlaces,veloDispo){
-      /*L.popup({
-            closeButton:false,
-            autoClose:false,
-            closeOnEscapeKey:false,
-            closeOnClick:false,
-            className:'popclass'
-        })
-        .setLatLng(point)
-        .setContent('<i class="fa fa-bicycle"></i>')
-        .openOn(this.map);*/
         let point = [lat,lng]
         this.bounds.push(point)
         L.marker(point,{
