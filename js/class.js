@@ -2,6 +2,7 @@ class leafletMaps{
     constructor(){
         this.map = null
         this.bounds = []
+        this.station = null
     }
     /**
      * chargement de la map
@@ -17,15 +18,31 @@ class leafletMaps{
             resolve()
         })
     }
-    addMarket(lat,lng,maxPlaces,veloDispo){
-        let point = [lat,lng]
-        this.bounds.push(point)
-        L.marker(point,{
-          icon: this.selectIcon(veloDispo,maxPlaces)
-        }).addTo(this.map);
+    /**
+     * ajout d'un marker sur la carte
+     * @param {int} lat 
+     * @param {int} lng 
+     * @param {int} maxPlaces 
+     * @param {int} veloDispo 
+     */
+    addMarket(station){
+      if(station.status !== "CLOSED"){
+        this.bounds.push(station.position)
+        L.marker(station.position,{
+          icon: this.selectIcon(station.veloDispo,station.maxPlaces)
+        })
+        .on('click', function(){
+          station.HTML_Contruction()
+        })
+        .addTo(this.map);
+      }
     }
+    /**
+     * selection du marker
+     * @param {int} veloDispo 
+     * @param {int} maxPlaces 
+     */
     selectIcon(veloDispo,maxPlaces){
-      console.log(veloDispo/maxPlaces)
       let urlIcon = null
       if(veloDispo/maxPlaces >0.5){
         urlIcon = 'imgs/icons/good.png'
@@ -36,7 +53,6 @@ class leafletMaps{
       }else{
         urlIcon = 'imgs/icons/marker.png'
       }
-      console.log(urlIcon)
       var myIcon = L.icon({
         iconUrl: urlIcon,
         iconSize: [38, 38],
@@ -45,6 +61,9 @@ class leafletMaps{
       });
     return myIcon
     }
+    /**
+     * center la carte avec le groupe de marker
+     */
     centre(){
       this.map.fitBounds(this.bounds)
     }
@@ -60,7 +79,6 @@ class Station{
       this.status = status
       this.veloDispo = veloDispo
       this.maxPlaces = maxPlaces
-      this.restant = null
     }
 
     
@@ -91,48 +109,55 @@ class Station{
     }
 
     HTML_Contruction(){
-      var div = document.createElement("div")
-      div.setAttribute('class','js-item')
-      div.addEventListener('mouseover',function(){
-        div.classList.add('active-info')
-      })
-      div.addEventListener('mouseleave',function(){
-        div.classList.remove('active-info')
-      })
+      var $nbStation = document.querySelector('#nbStation')
+      var htmlNbStation = "<p><span>Station : "+this.number+"</span></p>"
 
-      var h3 = document.createElement('h3')
-      h3.textContent = this.name
-      div.appendChild(h3)
+      var $nomStation = document.querySelector('#nomStation')
+      var htmlNomStation = "<p>"+this.name+"</p>"
 
-      var adresse = document.createElement('p')
-      adresse.textContent = "Adresse: " +this.adresse
-      div.appendChild(adresse)
+      var $addressStation = document.querySelector('#addressStation')
+      var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
 
-      var vel = document.createElement('p')
-      vel.setAttribute('class','vDispo')
-      vel.textContent = "Vélo disponibles: " +this.veloDispo+"/"+this.maxPlaces
-      div.appendChild(vel)
+      var $veloDispoStation = document.querySelector('#veloDispoStation')
+      var HTMLVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
       
-      var bt = document.createElement('div')
-      bt.setAttribute('class','btStyle')
 
-      var btZone = document.createElement('div')
-      btZone.setAttribute('class','btStyle-zone')
+      if($nbStation.children.length !== 0){
+        nbStation = $nbStation.children[0]
+        nbStation.innerHTML = htmlNbStation
 
-      var btR = document.createElement('p')
-      btR.textContent = "Réserver"
-      bt.appendChild(btR)
+        nomStation = $nomStation.children[0]
+        nomStation.innerHTML = htmlNomStation
 
-      bt.appendChild(btZone)
+        addressStation = $addressStation.children[0]
+        addressStation.innerHTML = htmlAddressStation
 
-      var divPour100 =document.createElement('div')
-      divPour100.setAttribute("class","restant")
-      divPour100.style.width = (this.veloDispo/this.maxPlaces)*100 + "%"
-      this.colorChoix(this.veloDispo,this.maxPlaces,divPour100)
-      div.appendChild(bt)
-      div.appendChild(divPour100)
+        veloDispo = $veloDispoStation.children[0]
+        veloDispo.innerHTML = HTMLVeloDispo
 
 
-      return div
+
+      }else{
+        var nbStation = document.createElement('p')
+        nbStation.innerHTML = htmlNbStation
+        $nbStation.appendChild(nbStation)
+
+        var nomStation = document.createElement('p')
+        nomStation.innerHTML = htmlNomStation
+        $nomStation.appendChild(nomStation)
+
+        var addressStation = document.createElement('p')
+        addressStation.innerHTML = htmlAddressStation
+        $addressStation.appendChild(addressStation)
+
+        var veloDispo = document.createElement('p')
+        veloDispo.innerHTML = HTMLVeloDispo
+        $veloDispoStation.appendChild(veloDispo)
+      }
+      
+     
+      
+      
+      
     }
   }

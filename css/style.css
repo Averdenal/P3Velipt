@@ -122,58 +122,32 @@ header nav ul li{
     overflow: auto;
     padding:0 10px;
 }
-#info .js-item{
-    position: relative;
-    margin-bottom:10px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.4);
-    height: 150px;
+#nomStation{
+    font-size: 2rem;
 }
-#info .js-item h3{
-    z-index: 1;
-    text-align: right;
-    margin:0;
-    font-size: 1.7rem;
-    color: rgba(0, 0, 0, 0.8);
-}
-.restant{
-    height: 5px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    border-radius: 0 5px 5px 0;
-}
-.vDispo{
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    font-size: 12px;
-    color:rgba(0,0,0,.5);
-}
-.station{
-    position: absolute;
-    top: 5px;
-    color:rgba(0,0,0,.6);
-}
-.active-info{
-    background-color: rgba(255, 255, 255, 1)!important;
-}
-/*.popclass{
-    width: 40px;
-}
-.popclass .leaflet-popup-content-wrapper{
-    width: 30px;
-    height: 30px;
-    border-radius: 20px ;
-}
-.popclass .leaflet-popup-content{
-    width: auto !important;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
+
 /* Pied de Page zone */
 footer{
     height: 50px;
+}
+
+.alRight{
+    text-align: right;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.w50f{
+    flex: 50%;
+}
+.w100f{
+    flex: 100%;
+}
+.w75f{
+    flex:75%
+}
+.w25f{
+    flex:25%
 }
