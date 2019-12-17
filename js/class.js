@@ -135,20 +135,27 @@ class Station{
         var nominput = document.createElement('input')
         nominput.placeholder ="Votre nom"
         nominput.setAttribute('id','nom')
+        nominput.required = true;
   
         var prenominput = document.createElement('input')
         prenominput.placeholder ="Votre Prénom"
         prenominput.setAttribute('id','prenom')
+        prenominput.required = true;
   
         var btinput = document.createElement('input')
         btinput.type = 'submit'
         btinput.textContent ="réserver"
         btinput.addEventListener('click',()=>{
-          localStorage.setItem('resaTime',new Date().getTime())
-          localStorage.setItem('resaStation', this.name)
-          localStorage.setItem('prenom',document.getElementById('prenom').value)
-          localStorage.setItem('nom', document.getElementById('nom').value)
-          infoResa($zoneinfo)
+          var prenom = document.getElementById('prenom').value
+          var nom = document.getElementById('nom').value
+          if(prenom !== "" && nom !== ""){
+            localStorage.setItem('resaTime',new Date().getTime())
+            localStorage.setItem('resaStation', this.name)
+            localStorage.setItem('prenom',prenom)
+            localStorage.setItem('nom', nom)
+            infoResa($zoneinfo)
+          }
+          
         })
   
         $Reservation.appendChild(nominput)
