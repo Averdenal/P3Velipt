@@ -125,7 +125,10 @@ header nav ul li{
 #nomStation{
     font-size: 2rem;
 }
-
+#reservation{
+    display: grid;
+    width: 100%;
+}
 /* Pied de Page zone */
 footer{
     height: 50px;
@@ -150,4 +153,12 @@ footer{
 }
 .w25f{
     flex:25%
+}
+#infoReservation{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    z-index: 400;
 }

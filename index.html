@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
+        <script src="js/lib.js"></script>
 
 
     <title>Eliptium - VElipt</title>
@@ -34,13 +35,15 @@
         </div>
         <div id="info">
             <div class="container">
-                <div id = 'nbStation' class="w25f"></div>
-                <div id = 'nomStation' class="w75f alRight"></div>
-                <div id = 'addressStation' class="w100f"></div>
-                <div class="w50f">
-                    <button>Réserver</button>
+                <div style="height: 100px;" class="container w100f">
+                    <div id = 'nbStation' class="w25f"></div>
+                    <div id = 'nomStation' class="w75f alRight"></div>
                 </div>
+                
+                <div id = 'addressStation' class="w100f"></div>
                 <div id = 'veloDispoStation' class="w50f alRight"></div>
+                <form id='reservation'>
+                </form>
             </div>
             
         </div>
@@ -55,5 +58,9 @@
         <script src="js/js.js"></script>
         <script src="js/fonctions.js"></script>
     </footer>
+    <div id="infoReservation">
+demo
+    </div>
 </body>
 </html>
+

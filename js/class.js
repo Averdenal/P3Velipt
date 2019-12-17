@@ -109,51 +109,51 @@ class Station{
     }
 
     HTML_Contruction(){
+
       var $nbStation = document.querySelector('#nbStation')
+      razElement($nbStation)
       var htmlNbStation = "<p><span>Station : "+this.number+"</span></p>"
+      $nbStation.innerHTML = htmlNbStation
 
       var $nomStation = document.querySelector('#nomStation')
+      razElement($nomStation)
       var htmlNomStation = "<p>"+this.name+"</p>"
+      $nomStation.innerHTML = htmlNomStation
 
       var $addressStation = document.querySelector('#addressStation')
+      razElement($addressStation)
       var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
+      $addressStation.innerHTML = htmlAddressStation
+
+
+      var $Reservation = document.querySelector('#reservation')
+      razElement($Reservation)
+
+      var nominput = document.createElement('input')
+      nominput.placeholder ="Votre nom"
+      nominput.setAttribute('id','nom')
+
+      var prenominput = document.createElement('input')
+      prenominput.placeholder ="Votre Prénom"
+      prenominput.setAttribute('id','prenom')
+
+      var btinput = document.createElement('input')
+      btinput.type = 'submit'
+      btinput.textContent ="réserver"
+
+
+      $Reservation.appendChild(nominput)
+      $Reservation.appendChild(prenominput)
+      $Reservation.appendChild(btinput)
+
 
       var $veloDispoStation = document.querySelector('#veloDispoStation')
-      var HTMLVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
+      razElement($veloDispoStation)
+      var htmlVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
+      $veloDispoStation.innerHTML = htmlVeloDispo
       
 
-      if($nbStation.children.length !== 0){
-        nbStation = $nbStation.children[0]
-        nbStation.innerHTML = htmlNbStation
 
-        nomStation = $nomStation.children[0]
-        nomStation.innerHTML = htmlNomStation
-
-        addressStation = $addressStation.children[0]
-        addressStation.innerHTML = htmlAddressStation
-
-        veloDispo = $veloDispoStation.children[0]
-        veloDispo.innerHTML = HTMLVeloDispo
-
-
-
-      }else{
-        var nbStation = document.createElement('p')
-        nbStation.innerHTML = htmlNbStation
-        $nbStation.appendChild(nbStation)
-
-        var nomStation = document.createElement('p')
-        nomStation.innerHTML = htmlNomStation
-        $nomStation.appendChild(nomStation)
-
-        var addressStation = document.createElement('p')
-        addressStation.innerHTML = htmlAddressStation
-        $addressStation.appendChild(addressStation)
-
-        var veloDispo = document.createElement('p')
-        veloDispo.innerHTML = HTMLVeloDispo
-        $veloDispoStation.appendChild(veloDispo)
-      }
       
      
       
