@@ -160,5 +160,6 @@ footer{
     width: 100%;
     background-color: black;
     color: white;
-    z-index: 400;
+    text-align: center;
+    z-index: 1000;
 }

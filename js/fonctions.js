@@ -26,3 +26,5 @@ let $map = document.querySelector('#map')
 if($map !== null){
   initMap()
 }
+let $inforesa = document.querySelector('#infoReservation')
+infoResa($inforesa)

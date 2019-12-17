@@ -13,7 +13,8 @@ class leafletMaps{
             this.map = L.map(element)
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
             {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                
             }).addTo(this.map)
             resolve()
         })
@@ -28,6 +29,7 @@ class leafletMaps{
     addMarket(station){
       if(station.status !== "CLOSED"){
         this.bounds.push(station.position)
+        
         L.marker(station.position,{
           icon: this.selectIcon(station.veloDispo,station.maxPlaces)
         })
@@ -35,6 +37,7 @@ class leafletMaps{
           station.HTML_Contruction()
         })
         .addTo(this.map);
+
       }
     }
     /**
@@ -109,7 +112,7 @@ class Station{
     }
 
     HTML_Contruction(){
-
+      var $zoneinfo = document.querySelector('#infoReservation')
       var $nbStation = document.querySelector('#nbStation')
       razElement($nbStation)
       var htmlNbStation = "<p><span>Station : "+this.number+"</span></p>"
@@ -125,27 +128,35 @@ class Station{
       var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
       $addressStation.innerHTML = htmlAddressStation
 
-
-      var $Reservation = document.querySelector('#reservation')
-      razElement($Reservation)
-
-      var nominput = document.createElement('input')
-      nominput.placeholder ="Votre nom"
-      nominput.setAttribute('id','nom')
-
-      var prenominput = document.createElement('input')
-      prenominput.placeholder ="Votre Prénom"
-      prenominput.setAttribute('id','prenom')
-
-      var btinput = document.createElement('input')
-      btinput.type = 'submit'
-      btinput.textContent ="réserver"
-
-
-      $Reservation.appendChild(nominput)
-      $Reservation.appendChild(prenominput)
-      $Reservation.appendChild(btinput)
-
+      if(localStorage.getItem('resaStation')=== null){
+        var $Reservation = document.querySelector('#reservation')
+        razElement($Reservation)
+  
+        var nominput = document.createElement('input')
+        nominput.placeholder ="Votre nom"
+        nominput.setAttribute('id','nom')
+  
+        var prenominput = document.createElement('input')
+        prenominput.placeholder ="Votre Prénom"
+        prenominput.setAttribute('id','prenom')
+  
+        var btinput = document.createElement('input')
+        btinput.type = 'submit'
+        btinput.textContent ="réserver"
+        btinput.addEventListener('click',()=>{
+          localStorage.setItem('resaTime',new Date().getTime())
+          localStorage.setItem('resaStation', this.name)
+          localStorage.setItem('prenom',document.getElementById('prenom').value)
+          localStorage.setItem('nom', document.getElementById('nom').value)
+          infoResa($zoneinfo)
+        })
+  
+        $Reservation.appendChild(nominput)
+        $Reservation.appendChild(prenominput)
+        $Reservation.appendChild(btinput)
+  
+      }
+      
 
       var $veloDispoStation = document.querySelector('#veloDispoStation')
       razElement($veloDispoStation)
