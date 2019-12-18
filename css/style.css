@@ -77,36 +77,21 @@ header nav ul li{
 }
 
 /* Sliders Zone*/
-#slider{
+.carousel{
     position: relative;
-    width: 100%;
     overflow: hidden;
-    height: 100%;
 }
-.carousel .carousel__container{
+.carousel__Container{
+    height: 500px;
+    display: inline-flex;
     width: 300%;
-    animation: animate 10s infinite;
+    transition-property: transform;
+    transition-duration: 1s;
 }
-@keyframes animat{
-    0%{
-        transform: translate(0%);
-    }
-    33%{
-        transform: translate(-33%);
-    }
-    66%{
-        transform: translate(-66%);
-    }
-
-}
-.carousel .carousel__container .carousel__item{
+.carousel__Item{
     float: left;
-    width: 100%;
+    width: 100%
 }
-.carousel .carousel__container .carousel__item img{
-    width: 100%;
-}
-
 
 /* zone maps */
 #maps-zone{

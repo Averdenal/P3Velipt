@@ -1,3 +1,39 @@
+class carousel{
+  /**
+   * @param  {HTMLElement} element
+   * @param  {objetJson} data objet json 
+   */
+  constructor(element, data){
+      this.root = element
+      let childRoot = this.creatDivClass('carousel')
+      let container = this.creatDivClass('carousel__Container')
+      setInterval(function(){ 
+        console.log(container)
+        container.style.transform = "translate(-25%,0,0)"
+        console.log(container.style.transform)
+       }, 3000);
+      childRoot.appendChild(container)
+      this.data = data
+      data.forEach(element => {
+          let item = this.creatDivClass('carousel__Item')
+          let img = document.createElement('img')
+          img.src = element.URL
+          item.appendChild(img)
+          container.appendChild(item)
+      });
+      this.root.appendChild(childRoot)
+      
+  }
+
+  creatDivClass(className){
+    let div = document.createElement('div')
+    div.setAttribute('class', className)
+    return div
+  }
+  
+
+}
+
 class leafletMaps{
     constructor(){
         this.map = null
