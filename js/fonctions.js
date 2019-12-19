@@ -8,7 +8,8 @@ var dataSlider =
 var $info = document.querySelector("#info")
 
 document.addEventListener("DOMContentLoaded", function(){
-  new carousel(document.querySelector('#slider'),dataSlider)
+  let car = new carousel(document.querySelector('#slider'),dataSlider)
+  car.play()
 
   /**
  * initialisation de la map
@@ -42,3 +43,8 @@ document.addEventListener("DOMContentLoaded", function(){
     infoResa($inforesa)
   },6000)
 })
+
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = 'green';
+ctx.fillRect(10, 10, 100, 100);

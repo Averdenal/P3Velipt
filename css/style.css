@@ -116,7 +116,7 @@ header nav ul li{
     background-color: black;
     left:calc(50% - 15px)
 }
-.signature{
+#canvas{
     width: 90%;
     margin:10px 5%;
     height: 200px;

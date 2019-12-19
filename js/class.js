@@ -35,7 +35,10 @@ class carousel{
 
       
   }
-
+/**
+ * création div avec class
+ * @param {string} className 
+ */
   creatDivClass(className){
     let div = document.createElement('div')
     div.setAttribute('class', className)
@@ -75,10 +78,7 @@ class carousel{
         this.container.style.transform = "translate3d("+ translateX +"%,0,0)"
       },3000)
       this.playinterval = !this.playinterval
-    }
-   
-
-    
+    }   
   }
 }
 
@@ -196,7 +196,6 @@ class Station{
     }
 
     HTML_Contruction(){
-      var $zoneinfo = document.querySelector('#infoReservation')
       var $nbStation = document.querySelector('#nbStation')
       razElement($nbStation)
       var htmlNbStation = "<p><span>Station : "+this.number+"</span></p>"
@@ -212,10 +211,9 @@ class Station{
       var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
       $addressStation.innerHTML = htmlAddressStation
 
-      if(localStorage.getItem('resaStation')=== null){
-        var $Reservation = document.querySelector('#reservation')
-        razElement($Reservation)
-  
+      var $Reservation = document.querySelector('#reservation')
+      razElement($Reservation)
+      if(localStorage.getItem('resaStation')=== null && this.veloDispo >0){  
         var nominput = document.createElement('input')
         nominput.placeholder ="Votre nom"
         nominput.setAttribute('id','nom')
@@ -227,7 +225,7 @@ class Station{
         prenominput.required = true;
         
         var canvas = document.createElement('canvas')
-        canvas.setAttribute('class','signature')
+        canvas.setAttribute('id','canvas')
 
         var btinput = document.createElement('input')
         btinput.type = 'submit'
@@ -247,7 +245,7 @@ class Station{
   
         $Reservation.appendChild(nominput)
         $Reservation.appendChild(prenominput)
-        $Reservation.appendChild(canvas)
+        //$Reservation.appendChild(newCanvas)
         $Reservation.appendChild(btinput)
   
       }
@@ -257,13 +255,5 @@ class Station{
       razElement($veloDispoStation)
       var htmlVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
       $veloDispoStation.innerHTML = htmlVeloDispo
-      
-
-
-      
-     
-      
-      
-      
     }
   }
