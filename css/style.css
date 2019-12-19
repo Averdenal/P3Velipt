@@ -116,7 +116,13 @@ header nav ul li{
     background-color: black;
     left:calc(50% - 15px)
 }
-
+.signature{
+    width: 90%;
+    margin:10px 5%;
+    height: 200px;
+    border: 2px solid grey;
+    background-color: white;
+}
 
 /* zone maps */
 #maps-zone{

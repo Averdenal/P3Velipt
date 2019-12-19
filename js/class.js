@@ -225,7 +225,10 @@ class Station{
         prenominput.placeholder ="Votre Prénom"
         prenominput.setAttribute('id','prenom')
         prenominput.required = true;
-  
+        
+        var canvas = document.createElement('canvas')
+        canvas.setAttribute('class','signature')
+
         var btinput = document.createElement('input')
         btinput.type = 'submit'
         btinput.textContent ="réserver"
@@ -237,13 +240,14 @@ class Station{
             localStorage.setItem('resaStation', this.name)
             localStorage.setItem('prenom',prenom)
             localStorage.setItem('nom', nom)
-            infoResa($zoneinfo)
+            document.location.reload(true)            
           }
           
         })
   
         $Reservation.appendChild(nominput)
         $Reservation.appendChild(prenominput)
+        $Reservation.appendChild(canvas)
         $Reservation.appendChild(btinput)
   
       }

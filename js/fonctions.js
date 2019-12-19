@@ -37,5 +37,8 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   let $inforesa = document.querySelector('#infoReservation')
   infoResa($inforesa)
-
+  setInterval(function(){
+    actualisation()
+    infoResa($inforesa)
+  },6000)
 })

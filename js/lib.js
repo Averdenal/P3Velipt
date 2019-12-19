@@ -31,9 +31,13 @@ function infoResa(element){
         
     }
 }
-function infoResaRemove(){
+function actualisation(){
     var element = document.querySelector('#infoReservation')
+    element.innerHTML =""
+}
+function infoResaRemove(){
+    actualisation()
     localStorage.removeItem('resaStation')
     localStorage.removeItem('resaTime')
-    element.innerHTML =""
+
 }
