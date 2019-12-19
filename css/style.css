@@ -107,20 +107,16 @@ header nav ul li{
 .carousel__prev{
     left: 0;
 }
-.carousel__play,.carousel__stop{
+.carousel__play{
     position: absolute;
     cursor: pointer;
     bottom: 0;
     width: 30px;
     height: 30px;
     background-color: black;
+    left:calc(50% - 15px)
 }
-.carousel__play{
-    left:48%
-}
-.carousel__stop{
-    right:48%;
-}
+
 
 /* zone maps */
 #maps-zone{

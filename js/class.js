@@ -26,13 +26,11 @@ class carousel{
       next.addEventListener('click',this.next.bind(this))
       let play = this.creatDivClass('carousel__play')
       play.addEventListener('click',this.play.bind(this))
-      let stop = this.creatDivClass('carousel__stop')
-      stop.addEventListener('click',this.stop.bind(this))
       childRoot.appendChild(prev)
       childRoot.appendChild(next)
       childRoot.appendChild(play)
-      childRoot.appendChild(stop)
       this.intervalCarousel = null
+      this.playinterval = true
       
 
       
@@ -63,23 +61,25 @@ class carousel{
     this.container.style.transform = "translate3d("+ translateX +"%,0,0)"
   } 
   play(){
-    this.intervalCarousel = setInterval(()=>{
-      this.index++
-      if(this.index === this.nbData){
-        console.log(this.index+" === "+ this.nbData)
-        this.index = 0
-      }
-      let translateX = - (this.index * (100/ this.nbData))
-      this.container.style.transform = "translate3d("+ translateX +"%,0,0)"
-    },3000)
+    if(!this.playinterval){
+      clearInterval(this.intervalCarousel)
+      this.playinterval = !this.playinterval
+    }else{
+      this.intervalCarousel = setInterval(()=>{
+        this.index++
+        if(this.index === this.nbData){
+          console.log(this.index+" === "+ this.nbData)
+          this.index = 0
+        }
+        let translateX = - (this.index * (100/ this.nbData))
+        this.container.style.transform = "translate3d("+ translateX +"%,0,0)"
+      },3000)
+      this.playinterval = !this.playinterval
+    }
+   
+
     
   }
-  stop(){
-    clearInterval(this.intervalCarousel)
-  }
-
-
-
 }
 
 class leafletMaps{
