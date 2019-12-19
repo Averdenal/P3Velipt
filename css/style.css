@@ -92,6 +92,35 @@ header nav ul li{
     float: left;
     width: 100%
 }
+.carousel__next, .carousel__prev{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top:50%;
+    cursor: pointer;
+    background-color: black;
+    z-index: 10;
+}
+.carousel__next{
+    right: 0;
+}
+.carousel__prev{
+    left: 0;
+}
+.carousel__play,.carousel__stop{
+    position: absolute;
+    cursor: pointer;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
+.carousel__play{
+    left:48%
+}
+.carousel__stop{
+    right:48%;
+}
 
 /* zone maps */
 #maps-zone{
