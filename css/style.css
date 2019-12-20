@@ -117,9 +117,7 @@ header nav ul li{
     left:calc(50% - 15px)
 }
 #canvas{
-    width: 90%;
-    margin:10px 5%;
-    height: 200px;
+    margin:10px auto;
     border: 2px solid grey;
     background-color: white;
 }

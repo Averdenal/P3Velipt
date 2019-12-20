@@ -226,6 +226,17 @@ class Station{
         
         var canvas = document.createElement('canvas')
         canvas.setAttribute('id','canvas')
+        canvas.setAttribute('width','400px')
+        canvas.setAttribute('height','200px')
+        canvas.addEventListener('mousemove',function(evt){
+          var context = canvas.getContext('2d');
+          console.log(getMousePos(canvas, evt))
+          let position =  getMousePos(canvas, evt)
+          console.log(position)
+          context.fillStyle = "#000000"
+          context.fillRect (position.x, position.y, 4, 4)
+          
+        })
 
         var btinput = document.createElement('input')
         btinput.type = 'submit'
@@ -245,7 +256,7 @@ class Station{
   
         $Reservation.appendChild(nominput)
         $Reservation.appendChild(prenominput)
-        //$Reservation.appendChild(newCanvas)
+        $Reservation.appendChild(canvas)
         $Reservation.appendChild(btinput)
   
       }
@@ -257,3 +268,10 @@ class Station{
       $veloDispoStation.innerHTML = htmlVeloDispo
     }
   }
+class canvasCrea{
+  constructor(HTML_Element){
+    this.canvas = HTML_Element
+  }
+
+
+}
