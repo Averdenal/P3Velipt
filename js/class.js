@@ -228,13 +228,22 @@ class Station{
         canvas.setAttribute('id','canvas')
         canvas.setAttribute('width','400px')
         canvas.setAttribute('height','200px')
-        canvas.addEventListener('mousemove',function(evt){
-          var context = canvas.getContext('2d');
-          console.log(getMousePos(canvas, evt))
-          let position =  getMousePos(canvas, evt)
-          console.log(position)
-          context.fillStyle = "#000000"
-          context.fillRect (position.x, position.y, 4, 4)
+        canvas.addEventListener('mousedown',function(){
+          let down = true
+          canvas.onmousemove = function(evt){
+            canvas.onmouseup = function(evt){
+              down = false
+            }
+          if(down){
+            var context = canvas.getContext('2d');
+            let position =  getMousePos(canvas, evt)
+            console.log(position)
+            context.fillStyle = "#000000"
+            context.fillRect (position.x, position.y, 4, 4)
+          }
+
+        }
+          
           
         })
 
