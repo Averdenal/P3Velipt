@@ -1,3 +1,13 @@
+/**
+ * création div avec class
+ * @param {string} className 
+ */
+function creatDivClass(className){
+    let div = document.createElement('div')
+    div.setAttribute('class', className)
+    return div
+  }
+
 function razElement(element){
     if(element.children.length !== 0){
         element.innerHTML =""
@@ -7,7 +17,7 @@ function razElement(element){
 function infoResa(element){
     var nom = localStorage.getItem('nom')
     var prenom = localStorage.getItem('prenom')
-    if(localStorage.getItem('resaStation') !== null){
+    if(localStorage.getItem('signature') === 'OK'){
         var time = new Date().getTime()
         if(time < parseInt(localStorage.getItem('resaTime')) + (30*60000)){
             var restantTime = (((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)/60000).toFixed(0)
@@ -46,7 +56,33 @@ function infoResaRemove(){
     localStorage.removeItem('resaTime')
     localStorage.removeItem('prenom')
     localStorage.removeItem('nom')
+    localStorage.removeItem('signature','OK')
 
+}
+function creaCanvasSignature(){
+    var canvas = document.createElement('canvas')
+        canvas.setAttribute('id','canvas')
+        canvas.setAttribute('width','400px')
+        canvas.setAttribute('height','200px')
+        canvas.addEventListener('mousedown',function(){
+          let down = true
+          canvas.onmousemove = function(evt){
+            canvas.onmouseup = function(){
+              down = false
+            }
+            if(down){
+              var context = canvas.getContext('2d');
+              setInterval(function(){
+                let position =  getMousePos(canvas, evt)
+                context.fillStyle = "#000000"
+                context.fillRect (position.x, position.y, 4, 4)
+              },.0000001)
+              
+            }
+          }     
+          
+        })
+    return canvas
 }
 /**
  * récup la position du curseur dans le canvas

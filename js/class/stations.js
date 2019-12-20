@@ -55,7 +55,7 @@ class Station{
 
       var $Reservation = document.querySelector('#reservation')
       razElement($Reservation)
-      if(localStorage.getItem('resaStation')=== null && this.veloDispo >0){  
+      if(localStorage.getItem('signature')=== null && this.veloDispo >0){  
         var nominput = document.createElement('input')
         nominput.placeholder ="Votre nom"
         nominput.setAttribute('id','nom')
@@ -66,25 +66,7 @@ class Station{
         prenominput.setAttribute('id','prenom')
         prenominput.required = true;
         
-        var canvas = document.createElement('canvas')
-        canvas.setAttribute('id','canvas')
-        canvas.setAttribute('width','400px')
-        canvas.setAttribute('height','200px')
-        canvas.addEventListener('mousedown',function(){
-          let down = true
-          canvas.onmousemove = function(evt){
-            canvas.onmouseup = function(){
-              down = false
-            }
-            if(down){
-              var context = canvas.getContext('2d');
-              let position =  getMousePos(canvas, evt)
-              context.fillStyle = "#000000"
-              context.fillRect (position.x, position.y, 4, 4)
-            }
-          }     
-          
-        })
+        
 
         var btinput = document.createElement('input')
         btinput.type = 'submit'
@@ -97,16 +79,28 @@ class Station{
             localStorage.setItem('resaStation', this.name)
             localStorage.setItem('prenom',prenom)
             localStorage.setItem('nom', nom)
-            document.location.reload(true)            
+            razElement($Reservation)
+            var infoReservationOK = document.createElement('p')
+            infoReservationOK.innerHTML="Bonjour, "+ localStorage.getItem('nom')+" "+localStorage.getItem('prenom')+"<br />Il ne vous reste qu'un signature à faire."
+            $Reservation.appendChild(infoReservationOK)
+            let canvasContenaire = creatDivClass('canvas_Container')
+            canvasContenaire.appendChild(creaCanvasSignature())
+            $Reservation.appendChild(canvasContenaire)
+            var btValider = document.createElement('button')
+            btValider.textContent = 'Valider'
+            btValider.addEventListener('click',function(){
+              localStorage.setItem('signature','OK')
+              document.location.reload(true);
+            })
+            $Reservation.appendChild(btValider)
           }
           
         })
   
         $Reservation.appendChild(nominput)
         $Reservation.appendChild(prenominput)
-        $Reservation.appendChild(canvas)
         $Reservation.appendChild(btinput)
-  
+        
       }
       
       var $veloDispoStation = document.querySelector('#veloDispoStation')

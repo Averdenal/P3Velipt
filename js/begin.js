@@ -38,4 +38,8 @@ document.addEventListener("DOMContentLoaded", function(){
     infoResa($inforesa)
   },10000)
 })
-
+/*
+let canvasRoot = document.getElementById('canvas')
+let canvas = creaCanvasSignature()
+canvasRoot.appendChild(canvas)
+*/

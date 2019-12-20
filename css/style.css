@@ -116,6 +116,7 @@ header nav ul li{
     background-color: black;
     left:calc(50% - 15px)
 }
+
 #canvas{
     margin:10px auto;
     border: 2px solid grey;
