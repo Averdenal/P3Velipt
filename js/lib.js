@@ -6,7 +6,7 @@ function creatDivClass(className){
     let div = document.createElement('div')
     div.setAttribute('class', className)
     return div
-  }
+}
 
 function razElement(element){
     if(element.children.length !== 0){
@@ -70,14 +70,12 @@ function creaCanvasSignature(){
             canvas.onmouseup = function(){
               down = false
             }
+            //https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo
             if(down){
-              var context = canvas.getContext('2d');
-              setInterval(function(){
+                var context = canvas.getContext('2d');
                 let position =  getMousePos(canvas, evt)
                 context.fillStyle = "#000000"
-                context.fillRect (position.x, position.y, 4, 4)
-              },.0000001)
-              
+                context.fillRect (position.x, position.y, 4, 4)              
             }
           }     
           

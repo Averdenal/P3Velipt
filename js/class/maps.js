@@ -8,7 +8,7 @@ class leafletMaps{
      * chargement de la map
      * @param {HTML_Element} element 
      */
-    async laod(element){
+    async load(element){
         return new Promise((resolve,reject) => {
             this.map = L.map(element)
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
@@ -44,6 +44,7 @@ class leafletMaps{
      * selection du marker
      * @param {int} veloDispo 
      * @param {int} maxPlaces 
+     * switc
      */
     selectIcon(veloDispo,maxPlaces){
       let urlIcon = null

@@ -37,10 +37,17 @@ class Station{
       return name
     }
 
+    saveInStorage(prenom,nom){
+      localStorage.setItem('resaTime',new Date().getTime())
+      localStorage.setItem('resaStation', this.name)
+      localStorage.setItem('prenom',prenom)
+      localStorage.setItem('nom', nom)
+    }
+
     HTML_Contruction(){
       var $nbStation = document.querySelector('#nbStation')
       razElement($nbStation)
-      var htmlNbStation = "<p><span>Station : "+this.number+"</span></p>"
+      var htmlNbStation = "<p>Station : "+this.number+"</p>"
       $nbStation.innerHTML = htmlNbStation
 
       var $nomStation = document.querySelector('#nomStation')
@@ -66,19 +73,15 @@ class Station{
         prenominput.setAttribute('id','prenom')
         prenominput.required = true;
         
-        
-
         var btinput = document.createElement('input')
         btinput.type = 'submit'
         btinput.textContent ="réserver"
+
         btinput.addEventListener('click',()=>{
           var prenom = document.getElementById('prenom').value
           var nom = document.getElementById('nom').value
           if(prenom !== "" && nom !== ""){
-            localStorage.setItem('resaTime',new Date().getTime())
-            localStorage.setItem('resaStation', this.name)
-            localStorage.setItem('prenom',prenom)
-            localStorage.setItem('nom', nom)
+            this.saveInStorage(prenom,nom)//
             razElement($Reservation)
             var infoReservationOK = document.createElement('p')
             infoReservationOK.innerHTML="Bonjour, "+ localStorage.getItem('nom')+" "+localStorage.getItem('prenom')+"<br />Il ne vous reste qu'un signature à faire."

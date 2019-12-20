@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", function(){
  */
   const initMap = async function(){
     let map = new leafletMaps()
-    await map.laod($map) //await - attentre de bon chargement de la map avant de continuer 
+    await map.load($map) //await - attentre de bon chargement de la map avant de continuer 
     var reponse = $.getJSON(URL)
     .always(function(){
       reponse.responseJSON.forEach(element => {
+        console.log(element)
         var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
         map.addMarket(station)
       });
@@ -38,8 +39,4 @@ document.addEventListener("DOMContentLoaded", function(){
     infoResa($inforesa)
   },10000)
 })
-/*
-let canvasRoot = document.getElementById('canvas')
-let canvas = creaCanvasSignature()
-canvasRoot.appendChild(canvas)
-*/
+
