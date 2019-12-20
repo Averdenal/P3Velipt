@@ -17,14 +17,9 @@ document.addEventListener("DOMContentLoaded", function(){
   const initMap = async function(){
     let map = new leafletMaps()
     await map.laod($map) //await - attentre de bon chargement de la map avant de continuer 
-    
-
-    var jqxhr = $.getJSON( URL, function() {
-      console.debug( "success" );
-    })
-    .always(() => {
-
-      jqxhr.responseJSON.forEach(element => {
+    var reponse = $.getJSON(URL)
+    .always(function(){
+      reponse.responseJSON.forEach(element => {
         var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
         map.addMarket(station)
       });
@@ -41,6 +36,6 @@ document.addEventListener("DOMContentLoaded", function(){
   setInterval(function(){
     actualisation()
     infoResa($inforesa)
-  },6000)
+  },10000)
 })
 

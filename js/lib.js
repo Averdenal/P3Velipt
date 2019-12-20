@@ -22,9 +22,6 @@ function infoResa(element){
                 infoResaRemove()
             })
             element.appendChild(btback)
-           
- 
-
         }else{
             infoResaRemove()
         }
