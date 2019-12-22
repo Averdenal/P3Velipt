@@ -1,13 +1,15 @@
 class Station{
 
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
-      this.number = number
-      this.name = this.nameChange(name)
-      this.adresse = adresse
-      this.position = position
-      this.status = status
-      this.veloDispo = veloDispo
-      this.maxPlaces = maxPlaces
+      this.localData = new localData();
+      this.interface = new interfaceUser();
+      this.number = number;
+      this.name = this.nameChange(name);
+      this.adresse = adresse;
+      this.position = position;
+      this.status = status;
+      this.veloDispo = veloDispo;
+      this.maxPlaces = maxPlaces;
     }
 
     
@@ -26,42 +28,38 @@ class Station{
      * @param {string} name 
      */
     nameChange(name){
-      if(name.substr(0,1) ==='#'){
-        name = name.substr(7)
-        if (name.substr(0, 1) === "-"){
-          name = name.substr(1)
-        }
-      }else if(name.substr(0,2) ==='00'){
-        name = name.substr(6)
+      switch(name.substr(0,1)){
+        case '#':
+          name = name.substr(7)
+          break;
+        case '0':
+          name = name.substr(6)
+          break;
+      }
+      if (name.substr(0, 1) === "-"){
+        name = name.substr(1)
       }
       return name
     }
 
-    saveInStorage(prenom,nom){
-      localStorage.setItem('resaTime',new Date().getTime())
-      localStorage.setItem('resaStation', this.name)
-      localStorage.setItem('prenom',prenom)
-      localStorage.setItem('nom', nom)
-    }
-
     HTML_Contruction(){
       var $nbStation = document.querySelector('#nbStation')
-      razElement($nbStation)
+      this.interface.actualisationHtmlElement($nbStation)
       var htmlNbStation = "<p>Station : "+this.number+"</p>"
       $nbStation.innerHTML = htmlNbStation
 
       var $nomStation = document.querySelector('#nomStation')
-      razElement($nomStation)
+      this.interface.actualisationHtmlElement($nomStation)
       var htmlNomStation = "<p>"+this.name+"</p>"
       $nomStation.innerHTML = htmlNomStation
 
       var $addressStation = document.querySelector('#addressStation')
-      razElement($addressStation)
+      this.interface.actualisationHtmlElement($addressStation)
       var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
       $addressStation.innerHTML = htmlAddressStation
 
       var $Reservation = document.querySelector('#reservation')
-      razElement($Reservation)
+      this.interface.actualisationHtmlElement($Reservation)
       if(localStorage.getItem('signature')=== null && this.veloDispo >0){  
         var nominput = document.createElement('input')
         nominput.placeholder ="Votre nom"
@@ -81,18 +79,24 @@ class Station{
           var prenom = document.getElementById('prenom').value
           var nom = document.getElementById('nom').value
           if(prenom !== "" && nom !== ""){
-            this.saveInStorage(prenom,nom)//
-            razElement($Reservation)
+            
+            this.interface.actualisationHtmlElement($Reservation)
             var infoReservationOK = document.createElement('p')
-            infoReservationOK.innerHTML="Bonjour, "+ localStorage.getItem('nom')+" "+localStorage.getItem('prenom')+"<br />Il ne vous reste qu'un signature à faire."
+            infoReservationOK.innerHTML="Bonjour, "+ nom+" "+prenom+"<br />Il ne vous reste qu'un signature à faire."
             $Reservation.appendChild(infoReservationOK)
-            let canvasContenaire = creatDivClass('canvas_Container')
+            let canvasContenaire = this.interface.creatDivClassInterface({className:'canvas_Container'})
             canvasContenaire.appendChild(creaCanvasSignature())
             $Reservation.appendChild(canvasContenaire)
             var btValider = document.createElement('button')
             btValider.textContent = 'Valider'
-            btValider.addEventListener('click',function(){
-              localStorage.setItem('signature','OK')
+            btValider.addEventListener('click',()=>{
+              this.localData.localStorageAdd({
+                resevationNomStation:this.name,
+                reservationDate:new Date().getTime(),
+                reservationNom:nom,
+                reservationPrenom:prenom,
+                reservationSignature:'OK'
+              })
               document.location.reload(true);
             })
             $Reservation.appendChild(btValider)
@@ -107,7 +111,7 @@ class Station{
       }
       
       var $veloDispoStation = document.querySelector('#veloDispoStation')
-      razElement($veloDispoStation)
+      this.interface.actualisationHtmlElement($veloDispoStation)
       var htmlVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
       $veloDispoStation.innerHTML = htmlVeloDispo
     }

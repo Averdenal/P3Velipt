@@ -4,33 +4,33 @@ class carousel{
    * @param  {objetJson} data objet json 
    */
   constructor(element, data){
-      this.root = element
-      let childRoot = creatDivClass('carousel')
-      this.container = creatDivClass('carousel__Container')
-      this.index = 0
-      childRoot.appendChild(this.container)
-      this.data = data
-      this.nbData = 0
+      this.interface = new interfaceUser();
+      this.root = element;
+      let childRoot = this.interface.creatDivClassInterface({className:'carousel'});
+      this.container = this.interface.creatDivClassInterface({className:'carousel__Container'});
+      this.index = 0;
+      childRoot.appendChild(this.container);
+      this.data = data;
+      this.nbData = 0;
       data.forEach(element => {
-        let item = creatDivClass('carousel__Item')
-        let img = document.createElement('img')
-        img.src = element.URL
-        item.appendChild(img)
-        this.container.appendChild(item)
-        this.nbData++
+        let item = this.interface.creatDivClassInterface({className:'carousel__Item'});
+        let img = this.interface.creatImgInterface({src:element.URL})
+        item.appendChild(img);
+        this.container.appendChild(item);
+        this.nbData++;
       });
-      this.root.appendChild(childRoot)
-      let prev = creatDivClass('carousel__prev')
-      prev.addEventListener('click',this.prev.bind(this))
-      let next = creatDivClass('carousel__next')
-      next.addEventListener('click',this.next.bind(this))
-      let play = creatDivClass('carousel__play')
-      play.addEventListener('click',this.play.bind(this))
-      childRoot.appendChild(prev)
-      childRoot.appendChild(next)
-      childRoot.appendChild(play)
-      this.intervalCarousel = null
-      this.playinterval = true
+      this.root.appendChild(childRoot);
+      let prev = this.interface.creatDivClassInterface({className:'carousel__prev'});
+      prev.addEventListener('click',this.prev.bind(this));
+      let next = this.interface.creatDivClassInterface({className:'carousel__next'});
+      next.addEventListener('click',this.next.bind(this));
+      let play = this.interface.creatDivClassInterface({className:'carousel__play'});
+      play.addEventListener('click',this.play.bind(this));
+      childRoot.appendChild(prev);
+      childRoot.appendChild(next);
+      childRoot.appendChild(play);
+      this.intervalCarousel = null;
+      this.playinterval = true;
       
 
       

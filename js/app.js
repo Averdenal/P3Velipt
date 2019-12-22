@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function(){
     var reponse = $.getJSON(URL)
     .always(function(){
       reponse.responseJSON.forEach(element => {
-        console.log(element)
         var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands)
         map.addMarket(station)
       });
@@ -33,10 +32,6 @@ document.addEventListener("DOMContentLoaded", function(){
     initMap()
   }
   let $inforesa = document.querySelector('#infoReservation')
-  infoResa($inforesa)
-  setInterval(function(){
-    actualisation()
-    infoResa($inforesa)
-  },10000)
+  new localData().actualistationReservationInfo($inforesa)
 })
 
