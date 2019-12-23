@@ -30,7 +30,7 @@ a{
     width: 100%;
     height: 100%;
 }
-.btStyle p:hover~ .btStyle-zone{
+.btStyle p:hover ~ .btStyle-zone{
     animation: rempl .3s forwards;
 }
 .btStyle-zone{
