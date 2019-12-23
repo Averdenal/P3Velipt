@@ -10,8 +10,7 @@ var $info = document.querySelector("#info")
 document.addEventListener("DOMContentLoaded", function(){
   let car = new carousel(document.querySelector('#slider'),dataSlider)
   car.play()
-  var canvaszone = document.getElementById('canvas');
-  canvaszone.style.display = "none";
+  
   if(localStorage.name !== null && localStorage.signature ==="null"){
     new localData().localStorageRemouve();
   }

@@ -123,6 +123,7 @@ header nav ul li{
 #canvas{
     z-index: 1000;
     position: fixed;
+    display: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);

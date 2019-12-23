@@ -76,20 +76,31 @@ class Station{
         var btinput = document.createElement('button')
         btinput.textContent ="réserver"
         btinput.addEventListener('click',()=>{
-          this.htmlContruction.changeBodyFilter();
-          var prenom = document.getElementById('prenom').value
-          var nom = document.getElementById('nom').value
-          if(prenom !== "" && nom !== ""){
+          var prenom = document.getElementById('prenom')
+          var nom = document.getElementById('nom')
+          if(prenom.value !== "" && nom.value !== ""){
+            this.htmlContruction.changeBodyFilter();
             this.localData.localStorageAdd({
               resevationNomStation:this.name,
               reservationDate:new Date().getTime(),
-              reservationNom:nom,
-              reservationPrenom:prenom
+              reservationNom:nom.value,
+              reservationPrenom:prenom.value
             })
             var canvaszone = document.getElementById('canvas');
             localStorage.setItem('signatureZone','flex');
             canvaszone.style.display = localStorage.getItem('signatureZone');          
-            this.canvas.CreatZoneSignature(canvaszone,nom, prenom);
+            this.canvas.CreatZoneSignature(canvaszone,nom.value, prenom.value);
+          }else{
+            if(prenom.value === ""){
+              prenom.style.border ='2px solid red'
+            }else{
+              prenom.style.border ='2px solid green'
+            }
+            if(nom.value === ""){
+              nom.style.border = " 2px solid red"
+            }else{
+              nom.style.border ='2px solid green'
+            }
           }
         })
   
