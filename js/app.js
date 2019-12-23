@@ -10,6 +10,14 @@ var $info = document.querySelector("#info")
 document.addEventListener("DOMContentLoaded", function(){
   let car = new carousel(document.querySelector('#slider'),dataSlider)
   car.play()
+  var canvaszone = document.getElementById('canvas');
+  var info;
+  if (localStorage.getItem('signatureZone')=== null){
+    info = 'none'
+  }else{
+    info = localStorage.getItem('signatureZone');
+  }
+  canvaszone.style.display = info;
 
   /**
  * initialisation de la map

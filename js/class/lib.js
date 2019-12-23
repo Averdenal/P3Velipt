@@ -17,15 +17,19 @@ class interfaceUser{
         let optionCreat = Object.assign({
             htmlElement:'div',
             className:'',
-            idName:''
+            idName:'',
+            contenu:''
         },option);
 
         let $element =document.createElement(optionCreat.htmlElement);
         if(optionCreat.className !== ''){
             $element.setAttribute('class',optionCreat.className);
         };
-        if(optionCreat.id !== null){
+        if(optionCreat.idName !== null){
             $element.setAttribute('id',optionCreat.idName);
+        };
+        if(optionCreat.contenu !== null){
+            $element.innerHTML=optionCreat.contenu;
         };
         return $element;
     }

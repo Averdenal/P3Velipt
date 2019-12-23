@@ -3,6 +3,8 @@ class Station{
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
       this.localData = new localData();
       this.interface = new interfaceUser();
+      this.canvas = new canvas();
+      this.htmlContruction = new htmlCreation();
       this.number = number;
       this.name = this.nameChange(name);
       this.adresse = adresse;
@@ -60,7 +62,7 @@ class Station{
 
       var $Reservation = document.querySelector('#reservation')
       this.interface.actualisationHtmlElement($Reservation)
-      if(localStorage.getItem('signature')=== null && this.veloDispo >0){  
+      if(localStorage.getItem('signature') === null && this.veloDispo >0){  
         var nominput = document.createElement('input')
         nominput.placeholder ="Votre nom"
         nominput.setAttribute('id','nom')
@@ -71,37 +73,24 @@ class Station{
         prenominput.setAttribute('id','prenom')
         prenominput.required = true;
         
-        var btinput = document.createElement('input')
-        btinput.type = 'submit'
+        var btinput = document.createElement('button')
         btinput.textContent ="réserver"
-
         btinput.addEventListener('click',()=>{
+          this.htmlContruction.changeBodyFilter();
           var prenom = document.getElementById('prenom').value
           var nom = document.getElementById('nom').value
           if(prenom !== "" && nom !== ""){
-            
-            this.interface.actualisationHtmlElement($Reservation)
-            var infoReservationOK = document.createElement('p')
-            infoReservationOK.innerHTML="Bonjour, "+ nom+" "+prenom+"<br />Il ne vous reste qu'un signature à faire."
-            $Reservation.appendChild(infoReservationOK)
-            let canvasContenaire = this.interface.creatDivClassInterface({className:'canvas_Container'})
-            canvasContenaire.appendChild(creaCanvasSignature())
-            $Reservation.appendChild(canvasContenaire)
-            var btValider = document.createElement('button')
-            btValider.textContent = 'Valider'
-            btValider.addEventListener('click',()=>{
-              this.localData.localStorageAdd({
-                resevationNomStation:this.name,
-                reservationDate:new Date().getTime(),
-                reservationNom:nom,
-                reservationPrenom:prenom,
-                reservationSignature:'OK'
-              })
-              document.location.reload(true);
+            this.localData.localStorageAdd({
+              resevationNomStation:this.name,
+              reservationDate:new Date().getTime(),
+              reservationNom:nom,
+              reservationPrenom:prenom
             })
-            $Reservation.appendChild(btValider)
+            var canvaszone = document.getElementById('canvas');
+            localStorage.setItem('signatureZone','flex');
+            canvaszone.style.display = localStorage.getItem('signatureZone');          
+            this.canvas.CreatZoneSignature(canvaszone,nom, prenom);
           }
-          
         })
   
         $Reservation.appendChild(nominput)

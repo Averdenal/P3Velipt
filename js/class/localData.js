@@ -18,6 +18,7 @@ class localData{
         localStorage.removeItem('prenom')
         localStorage.removeItem('nom')
         localStorage.removeItem('signature')
+        localStorage.removeItem('signatureZone');
     }
 
     /**
@@ -38,7 +39,7 @@ class localData{
             reservationSignature:null
         },option) 
 
-        if(localStorage.getItem('signature') === null){
+        if(localStorage.getItem('signature') === "null" || localStorage.getItem('signature') === null){
             if(localStorage.getItem('resaStation') === null){
                 localStorage.setItem('resaStation',fOption.resevationNomStation)
             }
@@ -51,7 +52,7 @@ class localData{
             if(localStorage.getItem('nom') === null){
                 localStorage.setItem('nom',fOption.reservationNom)
             }
-            if(localStorage.getItem('signature') === null){
+            if(localStorage.getItem('signature')!=='OK'){
                 localStorage.setItem('signature',fOption.reservationSignature)
             }
         }
