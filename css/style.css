@@ -174,7 +174,7 @@ header nav ul li{
     flex-wrap: wrap;
 }
 #maps-zone #map{
-    flex: 3;
+    flex: 2;
 }
 #maps-zone #info{
     flex:1;

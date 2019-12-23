@@ -45,74 +45,67 @@ class Station{
     }
 
     HTML_Contruction(){
-      var $nbStation = document.querySelector('#nbStation')
-      this.interface.actualisationHtmlElement($nbStation)
-      var htmlNbStation = "<p>Station : "+this.number+"</p>"
-      $nbStation.innerHTML = htmlNbStation
+      var tabInfoZone = [
+        {query:'#nbStation',contenu:"Station : "+this.number},
+        {query:'#nomStation',contenu:this.name},
+        {query:'#addressStation',contenu:"Adresse : <br />"+this.adresse},
+        {query:'#veloDispoStation',contenu:"Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces}];
 
-      var $nomStation = document.querySelector('#nomStation')
-      this.interface.actualisationHtmlElement($nomStation)
-      var htmlNomStation = "<p>"+this.name+"</p>"
-      $nomStation.innerHTML = htmlNomStation
-
-      var $addressStation = document.querySelector('#addressStation')
-      this.interface.actualisationHtmlElement($addressStation)
-      var htmlAddressStation = "<p>Adresse : <br />"+this.adresse+"</p>"
-      $addressStation.innerHTML = htmlAddressStation
-
+      tabInfoZone.forEach(element => {
+        var $element = document.querySelector(element.query);
+        this.interface.creatDivClassInterface({
+          htmlElement:'p',
+          contenu:element.contenu,
+          raz:true,
+          elementParent:$element
+        });
+      });
+      
       var $Reservation = document.querySelector('#reservation')
       this.interface.actualisationHtmlElement($Reservation)
-      if(localStorage.getItem('signature') === null && this.veloDispo >0){  
-        var nominput = document.createElement('input')
-        nominput.placeholder ="Votre nom"
-        nominput.setAttribute('id','nom')
-        nominput.required = true;
-  
-        var prenominput = document.createElement('input')
-        prenominput.placeholder ="Votre Prénom"
-        prenominput.setAttribute('id','prenom')
-        prenominput.required = true;
-        
-        var btinput = document.createElement('button')
-        btinput.textContent ="réserver"
+      if(localStorage.getItem('signature') === null && this.veloDispo >0){
+        var tabinfo = [
+          {placeholder:'votre nom',id:'nom'},
+          {placeholder:'votre prénom',id:'prenom'}];
+          
+        tabinfo.forEach(element => {
+          this.interface.creatDivClassInterface({
+            htmlElement:'input',
+            elementParent:$Reservation,
+            idName:element.id,
+            placeholder:element.placeholder
+            
+          });
+        });     
+
+        var btinput = this.interface.creatDivClassInterface({
+          htmlElement:'button',
+          elementParent:$Reservation,
+          contenu:"réserver"
+        });
         btinput.addEventListener('click',()=>{
-          var prenom = document.getElementById('prenom')
-          var nom = document.getElementById('nom')
+          var prenom = document.getElementById('prenom');
+          var nom = document.getElementById('nom');
+          nom.value = nom.value.toUpperCase();
           if(prenom.value !== "" && nom.value !== ""){
+
             this.htmlContruction.changeBodyFilter();
+
             this.localData.localStorageAdd({
               resevationNomStation:this.name,
               reservationDate:new Date().getTime(),
               reservationNom:nom.value,
               reservationPrenom:prenom.value
-            })
+            });
+
             var canvaszone = document.getElementById('canvas');
-            localStorage.setItem('signatureZone','flex');
-            canvaszone.style.display = localStorage.getItem('signatureZone');          
+            canvaszone.style.display = "flex";          
             this.canvas.CreatZoneSignature(canvaszone,nom.value, prenom.value);
           }else{
-            if(prenom.value === ""){
-              prenom.style.border ='2px solid red'
-            }else{
-              prenom.style.border ='2px solid green'
-            }
-            if(nom.value === ""){
-              nom.style.border = " 2px solid red"
-            }else{
-              nom.style.border ='2px solid green'
-            }
+            this.interface.verifInputVide(prenom);
+            this.interface.verifInputVide(nom);
           }
         })
-  
-        $Reservation.appendChild(nominput)
-        $Reservation.appendChild(prenominput)
-        $Reservation.appendChild(btinput)
-        
       }
-      
-      var $veloDispoStation = document.querySelector('#veloDispoStation')
-      this.interface.actualisationHtmlElement($veloDispoStation)
-      var htmlVeloDispo = "<p>Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces+"</p>"
-      $veloDispoStation.innerHTML = htmlVeloDispo
     }
   }

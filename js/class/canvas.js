@@ -13,42 +13,52 @@ class canvas{
       htmlElement:'p',
       contenu:"Bonjour, "+nom+" "+prenom+"<br />Une simple signature pour valider votre réservation"
     });
-    return p
+    return p;
   }
   creaCanvasSignature(){
-    var canvas = document.createElement('canvas')
-        canvas.setAttribute('width','450px')
-        canvas.setAttribute('height','200px')
+    var canvas = document.createElement('canvas');
+        canvas.setAttribute('width','450px');
+        canvas.setAttribute('height','200px');
         canvas.addEventListener('mousedown',()=>{
-          console.log('demo')
-          let down = true
+          let down = true;
           canvas.onmousemove = (evt)=>{
             canvas.onmouseup = ()=>{
-              down = false
-            }
+              down = false;
+            };
             //https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo
             if(down){
                 var context = canvas.getContext('2d');
-                let position =  this.getMousePos(canvas, evt)
-                context.fillStyle = "#000000"
-                context.fillRect (position.x, position.y, 4, 4)              
-            }
-          }     
-          
-        })
-    return canvas
+                let position =  this.getMousePos(canvas, evt);
+                context.fillStyle = "#000000";
+                context.fillRect (position.x, position.y, 4, 4);
+            };
+          };
+        });
+    return canvas;
   }
+
   creaCanvasSignaturevalide(){
     let div = this.interface.creatDivClassInterface({
       htmlElement:'div',
       className:"flex-container",
       idName:"canvasZoneBt"
     });
+    let btClean = this.interface.creatDivClassInterface({
+        htmlElement:'button',
+        contenu:'Effacer',
+        idName:'effacer',
+        className:'bt',
+        elementParent:div
+      });
+      btClean.addEventListener('click',()=>{
+          this.clearCanvas();
+      })
     let btValider = this.interface.creatDivClassInterface({
       htmlElement:'button',
       contenu:'Valider',
       idName:'valider',
-      className:'bt'
+      className:'bt',
+      elementParent:div
     });
     btValider.addEventListener('click',()=>{
       this.localData.localStorageAdd({
@@ -61,14 +71,13 @@ class canvas{
       htmlElement:'button',
       contenu:'Annuler',
       idName:'annuler',
-      className:'bt'
+      className:'bt',
+      elementParent:div
     });
     btAnnuler.addEventListener('click',()=>{
       this.localData.localStorageRemouve()
       document.location.reload(true)
     })
-    div.appendChild(btValider);
-    div.appendChild(btAnnuler);
     return div
   }
     /**
@@ -88,7 +97,7 @@ class canvas{
      * efface ce qui se trouve dans le canvas
      */
     clearCanvas(){
-        let canvas = document.getElementById('canvas');
+        let canvas = document.querySelector('canvas');
         let context = canvas.getContext('2d');
         context.fillStyle = "#FFF";
         context.fillRect (0, 0, canvas.width, canvas.height);
