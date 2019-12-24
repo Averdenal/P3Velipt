@@ -2,12 +2,20 @@ class canvas{
   constructor(){
     this.interface = new interfaceUser();
     this.localData = new localData();
+    this.signature = false;
+    this.canvas = null;
   }
   CreatZoneSignature(element,nom, prenom){
     element.appendChild(this.creaCanvasInfos(nom, prenom));
     element.appendChild(this.creaCanvasSignature());
     element.appendChild(this.creaCanvasSignaturevalide());
   }
+
+  /**
+   * message signature
+   * @param {string} nom 
+   * @param {string} prenom 
+   */
   creaCanvasInfos(nom, prenom){
     var p = this.interface.creatDivClassInterface({
       htmlElement:'p',
@@ -15,38 +23,43 @@ class canvas{
     });
     return p;
   }
+
+  /**
+   * Gestion de la signature
+   */
   creaCanvasSignature(){
     let down = false;
-    var canvas = document.createElement('canvas');
-        canvas.setAttribute('width','450px');
-        canvas.setAttribute('height','200px');
-        canvas.onmousedown = ()=>{
+    this.canvas = document.createElement('canvas');
+    this.canvas.setAttribute('width','450px');
+    this.canvas.setAttribute('height','200px');
+    this.canvas.onmousedown = ()=>{
           down = true;
         };
-        canvas.ontouchstart = ()=>{
+        this.canvas.ontouchstart = ()=>{
           down = true;
           console.log('demo')
         }
-        canvas.onmouseup = ()=>{
+        this.canvas.onmouseup = ()=>{
           down = false;
         };
-        canvas.ontouchend = ()=>{
+        this.canvas.ontouchend = ()=>{
           down = false;
         };
 
-        canvas.onmousemove = (evt)=>{
-          let position =  this.getMousePos(canvas, evt);
-          var ctx = canvas.getContext('2d');
+        this.canvas.onmousemove = (evt)=>{
+          let position =  this.getMousePos(this.canvas, evt);
+          var ctx = this.canvas.getContext('2d');
           if(down){
             ctx.lineTo(position.x, position.y); //fin de ligne
+            this.signature = true;
           }
             ctx.stroke();  // fin de dessin
             ctx.beginPath();// debut de dessin
             ctx.moveTo(position.x, position.y); // debut de ligne
         };
-        canvas.ontouchmove = (evt)=>{
-          let position =  this.getMousePos(canvas, evt);
-          var ctx = canvas.getContext('2d');
+        this.canvas.ontouchmove = (evt)=>{
+          let position =  this.getMousePos(this.canvas, evt);
+          var ctx = this.canvas.getContext('2d');
           if(down){
             ctx.lineTo(position.x, position.y); //fin de ligne
           }
@@ -55,9 +68,12 @@ class canvas{
             ctx.moveTo(position.x, position.y); // debut de ligne
         };
         
-    return canvas;
+    return this.canvas;
   }
 
+  /**
+   * Création des boutons et vérification signature
+   */
   creaCanvasSignaturevalide(){
     let div = this.interface.creatDivClassInterface({
       htmlElement:'div',
@@ -73,6 +89,7 @@ class canvas{
       });
       btClean.addEventListener('click',()=>{
           this.clearCanvas();
+          this.signature = false;
       })
     let btValider = this.interface.creatDivClassInterface({
       htmlElement:'button',
@@ -82,11 +99,17 @@ class canvas{
       elementParent:div
     });
     btValider.addEventListener('click',()=>{
-      this.localData.localStorageAdd({
-        reservationSignature:'OK'
-      });
-      localStorage.setItem('signatureZone','none');
-      document.location.reload(true);
+      if(this.signature){
+        this.localData.localStorageAdd({
+          reservationSignature:'OK'
+        });
+        localStorage.setItem('signatureZone','none');
+        document.location.reload(true);
+      }else{
+        this.canvas.style.border ='2px solid red';
+      }
+     
+      
     })
     let btAnnuler = this.interface.creatDivClassInterface({
       htmlElement:'button',
@@ -96,10 +119,10 @@ class canvas{
       elementParent:div
     });
     btAnnuler.addEventListener('click',()=>{
-      this.localData.localStorageRemouve()
-      document.location.reload(true)
-    })
-    return div
+      this.localData.localStorageRemouve();
+      document.location.reload(true);
+    });
+    return div;
   }
     /**
      * récup la position du curseur dans le canvas
@@ -124,4 +147,3 @@ class canvas{
         context.fillRect (0, 0, canvas.width, canvas.height);
     }
 }
-
