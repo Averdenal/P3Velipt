@@ -16,24 +16,45 @@ class canvas{
     return p;
   }
   creaCanvasSignature(){
+    let down = false;
     var canvas = document.createElement('canvas');
         canvas.setAttribute('width','450px');
         canvas.setAttribute('height','200px');
-        canvas.addEventListener('mousedown',()=>{
-          let down = true;
-          canvas.onmousemove = (evt)=>{
-            canvas.onmouseup = ()=>{
-              down = false;
-            };
-            //https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo
-            if(down){
-                var context = canvas.getContext('2d');
-                let position =  this.getMousePos(canvas, evt);
-                context.fillStyle = "#000000";
-                context.fillRect (position.x, position.y, 4, 4);
-            };
-          };
-        });
+        canvas.onmousedown = ()=>{
+          down = true;
+        };
+        canvas.ontouchstart = ()=>{
+          down = true;
+          console.log('demo')
+        }
+        canvas.onmouseup = ()=>{
+          down = false;
+        };
+        canvas.ontouchend = ()=>{
+          down = false;
+        };
+
+        canvas.onmousemove = (evt)=>{
+          let position =  this.getMousePos(canvas, evt);
+          var ctx = canvas.getContext('2d');
+          if(down){
+            ctx.lineTo(position.x, position.y); //fin de ligne
+          }
+            ctx.stroke();  // fin de dessin
+            ctx.beginPath();// debut de dessin
+            ctx.moveTo(position.x, position.y); // debut de ligne
+        };
+        canvas.ontouchmove = (evt)=>{
+          let position =  this.getMousePos(canvas, evt);
+          var ctx = canvas.getContext('2d');
+          if(down){
+            ctx.lineTo(position.x, position.y); //fin de ligne
+          }
+            ctx.stroke();  // fin de dessin
+            ctx.beginPath();// debut de dessin
+            ctx.moveTo(position.x, position.y); // debut de ligne
+        };
+        
     return canvas;
   }
 
@@ -103,3 +124,4 @@ class canvas{
         context.fillRect (0, 0, canvas.width, canvas.height);
     }
 }
+

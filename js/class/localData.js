@@ -85,11 +85,11 @@ class localData{
         }
     }
     actualistationReservationInfo($inforesa){
-        this.infoResa($inforesa)
+        this.infoResa($inforesa);
         setInterval(()=>{
-            new interfaceUser().actualisationHtmlElement($inforesa)
-            this.infoResa($inforesa)
-        },10000)
+            new interfaceUser().actualisationHtmlElement($inforesa);
+            this.infoResa($inforesa);
+        },10000);
     }
 }
     
