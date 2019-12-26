@@ -11,6 +11,7 @@ class leafletMaps{
     async load(element){
         return new Promise((resolve,reject) => {
             this.map = L.map(element)
+            this.map.options.minZoom =13;
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
             {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -19,6 +20,7 @@ class leafletMaps{
             resolve()
         })
     }
+   
     /**
      * ajout d'un marker sur la carte
      * @param {int} lat 

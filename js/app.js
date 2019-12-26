@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
     new localData().localStorageRemouve();
   }
 
-  /**
+/**
  * initialisation de la map
  */
   const initMap = async function(){

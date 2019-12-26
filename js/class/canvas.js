@@ -6,24 +6,15 @@ class canvas{
     this.canvas = null;
   }
   CreatZoneSignature(element,nom, prenom){
-    element.appendChild(this.creaCanvasInfos(nom, prenom));
+    this.interface.creatDivClassInterface({
+      htmlElement:'p',
+      contenu:"Bonjour, "+nom+" "+prenom+"<br />Une simple signature pour valider votre réservation",
+      elementParent:element
+    });
+
     element.appendChild(this.creaCanvasSignature());
     element.appendChild(this.creaCanvasSignaturevalide());
   }
-
-  /**
-   * message signature
-   * @param {string} nom 
-   * @param {string} prenom 
-   */
-  creaCanvasInfos(nom, prenom){
-    var p = this.interface.creatDivClassInterface({
-      htmlElement:'p',
-      contenu:"Bonjour, "+nom+" "+prenom+"<br />Une simple signature pour valider votre réservation"
-    });
-    return p;
-  }
-
   /**
    * Gestion de la signature
    */
