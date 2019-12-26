@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function(){
   new carousel(document.querySelector('#slider')).play()
   
@@ -6,9 +5,6 @@ document.addEventListener("DOMContentLoaded", function(){
     new localData().localStorageRemouve();
   }
   new leafletMaps().initMaps();
-
-
-  let $inforesa = document.querySelector('#infoReservation')
-  new localData().actualistationReservationInfo($inforesa)
+  new localData().actualistationReservationInfo(document.querySelector('#infoReservation'));
 })
 

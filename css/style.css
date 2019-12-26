@@ -137,6 +137,10 @@ header nav ul li{
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
 }
+.carousel__play:hover,.carousel__next:hover, .carousel__prev:hover{
+    color: green;
+    transition: .3s;
+}
 .carousel__next, .carousel__prev{
     width: 40px;
     height: 40px;
