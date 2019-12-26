@@ -5,6 +5,7 @@ class canvas{
     this.signature = false;
     this.canvas = null;
   }
+
   CreatZoneSignature(element,nom, prenom){
     this.interface.creatDivClassInterface({
       htmlElement:'p',

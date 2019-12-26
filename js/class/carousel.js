@@ -3,19 +3,25 @@ class carousel{
    * @param  {HTMLElement} element
    * @param  {objetJson} data objet json 
    */
-  constructor(element, data){
-      this.interface = new interfaceUser();
-      let childRoot = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
-      this.container = this.interface.creatDivClassInterface({className:'carousel__Container',elementParent:childRoot});
-      this.index = 0;
-      this.data = data;
-      this.nbData = 0;
-      this.intervalCarousel = null;
-      this.playinterval = true;
+  constructor(element){
+    this.interface = new interfaceUser();
+    let childRoot = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
+    this.container = this.interface.creatDivClassInterface({className:'carousel__Container',elementParent:childRoot});
+    this.index = 0;
+    this.data =
+    [
+        {titre:"Un Clic!",textInfo:"Sur un marcker.", URL:"imgs/sliders/slider1jpg.jpg"},
+        {titre:"Un Clic!",textInfo:"Entrez vos informations.", URL:"imgs/sliders/slider1jpg.jpg"},
+        {titre:"Un Clic!",textInfo:"Entrez votre signature.", URL:"imgs/sliders/slider1jpg.jpg"}
+    ];
+    this.nbData = 0;
+    this.intervalCarousel = null;
+    this.playinterval = true;
 
-      this.creatCarouselItem(this.container);
-      this.creatBt(childRoot);
+    this.creatCarouselItem(this.container);
+    this.creatBt(childRoot);
   }
+
   creatCarouselItem(container){
     this.data.forEach(element => {
       let item = this.interface.creatDivClassInterface({htmlElement:'figure',className:'carousel__Item',elementParent:container});
@@ -24,6 +30,7 @@ class carousel{
       this.nbData++;
     });
   }
+
   creatBt(elementParent){
     let prev = this.interface.creatDivClassInterface({className:'carousel__prev',elementParent:elementParent});
     prev.addEventListener('click',this.prev.bind(this));
