@@ -12,6 +12,7 @@ class localData{
     actualistation.actualisationHtmlElement($element);
     this.localStorageRemouve();
     }
+    
     localStorageRemouve(){
         localStorage.removeItem('resaStation')
         localStorage.removeItem('resaTime')
