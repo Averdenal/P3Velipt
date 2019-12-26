@@ -13,7 +13,7 @@ p{
 }
 a{
     text-decoration: none;
-    color: white;
+    color: inherit;
 }
 .btStyle{
     position: absolute;
@@ -64,18 +64,31 @@ header #header-logo{
     flex: 1;
 }
 header nav{
+    position: relative;
     flex:5;
     display: flex;
     justify-content: flex-end;
 }
 header nav ul{
     display: inline-flex;
-    margin: 0 2em;
 }
 header nav ul li{
     margin:0 1em;
 }
-
+#min__menu{
+    position: absolute;
+    right: 20px;
+    top:50%;
+    transform: translateY(-50%);
+    display: block;
+    float: right;
+    font-size: 2em;
+}
+#min__menu::before{
+    display: none;
+    font-family:FontAwesome;
+    content: "\f0c9";
+}
 /* Sliders Zone*/
 .carousel{
     position: relative;
@@ -87,34 +100,86 @@ header nav ul li{
     width: 300%;
     transition-property: transform;
     transition-duration: 1s;
+    height: 350px;
+    overflow: hidden;
 }
 .carousel__Item{
+    position: relative;
     float: left;
-    width: 100%
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+}
+.carousel__Item img{
+    height: 100%;
+    width: 100%;
+}
+.carousel__Item__Info{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.carousel__Item__Info h2{
+    font-size: 3em;
+}
+.carousel__Item__Info p{
+    font-size: 2em;
+}
+.carousel__play,.carousel__next, .carousel__prev{
+    position: absolute;
+    cursor: pointer;
+    font-family:FontAwesome;
+    z-index: 10;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 .carousel__next, .carousel__prev{
-    position: absolute;
     width: 40px;
     height: 40px;
     top:50%;
-    cursor: pointer;
-    background-color: black;
-    z-index: 10;
+    transform: translateY(-50%);    
 }
 .carousel__next{
     right: 0;
+    border-radius:20px 0 0 20px;
+}
+.carousel__next::before{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "\f054";
+    font-size: 1.4em;
 }
 .carousel__prev{
     left: 0;
+    border-radius:0 20px 20px 0;
+}
+.carousel__prev::before{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "\f053";
+    font-size: 1.4em;
 }
 .carousel__play{
-    position: absolute;
-    cursor: pointer;
     bottom: 0;
-    width: 30px;
-    height: 30px;
-    background-color: black;
-    left:calc(50% - 15px)
+    width: 40px;
+    height: 40px;
+    left:calc(50% - 15px);
+    border-radius:20px 20px 0 0;
+}
+.carousel__play::before{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "\f04b";
 }
 .flex-container{
     display: flex;
@@ -225,4 +290,27 @@ footer{
 }
 .active{
     filter: blur(20px);
+}
+@media screen and (max-width: 640px){
+/* Menu */
+header nav ul{
+    display: none;
+}
+#min__menu::before{
+    display: block;
+}
+/* zone maps */
+#maps-zone{
+    margin-bottom: 1vh;
+    flex-wrap: wrap;
+    height: auto;
+}
+#maps-zone #map{
+    flex: 2 100%;
+    height: 400px;
+}
+#maps-zone #info{
+    flex:1 100%;
+    padding:10px;
+}
 }

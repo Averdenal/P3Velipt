@@ -5,37 +5,33 @@ class carousel{
    */
   constructor(element, data){
       this.interface = new interfaceUser();
-      this.root = element;
-      let childRoot = this.interface.creatDivClassInterface({className:'carousel'});
-      this.container = this.interface.creatDivClassInterface({className:'carousel__Container'});
+      let childRoot = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
+      this.container = this.interface.creatDivClassInterface({className:'carousel__Container',elementParent:childRoot});
       this.index = 0;
-      childRoot.appendChild(this.container);
       this.data = data;
       this.nbData = 0;
-      data.forEach(element => {
-        let item = this.interface.creatDivClassInterface({className:'carousel__Item'});
-        let img = this.interface.creatImgInterface({src:element.URL})
-        item.appendChild(img);
-        this.container.appendChild(item);
-        this.nbData++;
-      });
-      this.root.appendChild(childRoot);
-      let prev = this.interface.creatDivClassInterface({className:'carousel__prev'});
-      prev.addEventListener('click',this.prev.bind(this));
-      let next = this.interface.creatDivClassInterface({className:'carousel__next'});
-      next.addEventListener('click',this.next.bind(this));
-      let play = this.interface.creatDivClassInterface({className:'carousel__play'});
-      play.addEventListener('click',this.play.bind(this));
-      childRoot.appendChild(prev);
-      childRoot.appendChild(next);
-      childRoot.appendChild(play);
       this.intervalCarousel = null;
       this.playinterval = true;
-      
 
-      
+      this.creatCarouselItem(this.container);
+      this.creatBt(childRoot);
   }
-
+  creatCarouselItem(container){
+    this.data.forEach(element => {
+      let item = this.interface.creatDivClassInterface({htmlElement:'figure',className:'carousel__Item',elementParent:container});
+      this.interface.creatImgInterface({src:element.URL,elementParent:item});
+      this.interface.creatDivClassInterface({htmlElement:'figcaption',className:'carousel__Item__Info',elementParent:item,contenu:'<h2>'+element.titre+'</h2><p>'+element.textInfo+'</p>'});
+      this.nbData++;
+    });
+  }
+  creatBt(elementParent){
+    let prev = this.interface.creatDivClassInterface({className:'carousel__prev',elementParent:elementParent});
+    prev.addEventListener('click',this.prev.bind(this));
+    let next = this.interface.creatDivClassInterface({className:'carousel__next',elementParent:elementParent});
+    next.addEventListener('click',this.next.bind(this));
+    let play = this.interface.creatDivClassInterface({className:'carousel__play',elementParent:elementParent});
+    play.addEventListener('click',this.play.bind(this));
+  }
 
   next(){
     this.index++
@@ -69,7 +65,7 @@ class carousel{
         }
         let translateX = - (this.index * (100/ this.nbData))
         this.container.style.transform = "translate3d("+ translateX +"%,0,0)"
-      },3000)
+      },5000)
       this.playinterval = !this.playinterval
     }   
   }

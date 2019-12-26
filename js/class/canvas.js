@@ -35,14 +35,7 @@ class canvas{
     this.canvas.onmousedown = ()=>{
           down = true;
         };
-        this.canvas.ontouchstart = ()=>{
-          down = true;
-          console.log('demo')
-        }
         this.canvas.onmouseup = ()=>{
-          down = false;
-        };
-        this.canvas.ontouchend = ()=>{
           down = false;
         };
 
@@ -50,22 +43,12 @@ class canvas{
           let position =  this.getMousePos(this.canvas, evt);
           var ctx = this.canvas.getContext('2d');
           if(down){
-            ctx.lineTo(position.x, position.y); //fin de ligne
+            ctx.lineTo(position.x, position.y); //point d'arrivée
             this.signature = true;
           }
             ctx.stroke();  // fin de dessin
             ctx.beginPath();// debut de dessin
-            ctx.moveTo(position.x, position.y); // debut de ligne
-        };
-        this.canvas.ontouchmove = (evt)=>{
-          let position =  this.getMousePos(this.canvas, evt);
-          var ctx = this.canvas.getContext('2d');
-          if(down){
-            ctx.lineTo(position.x, position.y); //fin de ligne
-          }
-            ctx.stroke();  // fin de dessin
-            ctx.beginPath();// debut de dessin
-            ctx.moveTo(position.x, position.y); // debut de ligne
+            ctx.moveTo(position.x, position.y); //point de départ
         };
         
     return this.canvas;

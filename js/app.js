@@ -1,9 +1,9 @@
 let URL = "https://api.jcdecaux.com/vls/v1/stations?contract=nantes&apiKey=096983f1e05f95e3c792a500e2499e840cf58f2d"
 var dataSlider =
 [
-    {"textInfo":"Demo1", "URL":"imgs/sliders/slider1jpg.jpg"},
-    {"textInfo":"Demo2", "URL":"imgs/sliders/slider1jpg.jpg"},
-    {"textInfo":"Demo3", "URL":"imgs/sliders/slider1jpg.jpg"}
+    {titre:"Un Clic!",textInfo:"Sur un marcker.", URL:"imgs/sliders/slider1jpg.jpg"},
+    {titre:"Un Clic!",textInfo:"Entrez vos informations.", URL:"imgs/sliders/slider1jpg.jpg"},
+    {titre:"Un Clic!",textInfo:"Entrez votre signature.", URL:"imgs/sliders/slider1jpg.jpg"}
 ]
 var $info = document.querySelector("#info")
 

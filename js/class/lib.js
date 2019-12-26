@@ -28,10 +28,10 @@ class interfaceUser{
         if(optionCreat.className !== ''){
             $element.setAttribute('class',optionCreat.className);
         };
-        if(optionCreat.idName !== null){
+        if(optionCreat.idName !== ''){
             $element.setAttribute('id',optionCreat.idName);
         };
-        if(optionCreat.contenu !== null){
+        if(optionCreat.contenu !== ''){
             $element.innerHTML=optionCreat.contenu;
         };
         if(optionCreat.raz){
@@ -54,12 +54,17 @@ class interfaceUser{
     creatImgInterface(option = {}){
         let optionCreat = Object.assign({
             src:'',
-            alt:'image'
+            alt:'image',
+            elementParent:''
         },option);
         let $element = document.createElement('img');
         $element.src = optionCreat.src;
         $element.alt = optionCreat.alt;
+        if(optionCreat.elementParent !== ''){
+            optionCreat.elementParent.appendChild($element);
+        }
         return $element;
+
     }
     /**
      * innerHTML = ""
