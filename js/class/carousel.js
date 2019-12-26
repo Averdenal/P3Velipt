@@ -10,9 +10,9 @@ class carousel{
     this.index = 0;
     this.data =
     [
-        {titre:"Un Clic!",textInfo:"Sur un marcker.", URL:"imgs/sliders/slider1jpg.jpg"},
-        {titre:"Un Clic!",textInfo:"Entrez vos informations.", URL:"imgs/sliders/slider1jpg.jpg"},
-        {titre:"Un Clic!",textInfo:"Entrez votre signature.", URL:"imgs/sliders/slider1jpg.jpg"}
+        {titre:"Un Clic!",textInfo:"Sur un marcker.", URL:"imgs/sliders/velo1.jpg"},
+        {titre:"Un Clic!",textInfo:"Entrez vos informations.", URL:"imgs/sliders/velo2.jpg"},
+        {titre:"Et un Clic!",textInfo:"Entrez votre signature.", URL:"imgs/sliders/velo3.jpg"}
     ];
     this.nbData = 0;
     this.intervalCarousel = null;

@@ -6,5 +6,17 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   new leafletMaps().initMaps();
   new localData().actualistationReservationInfo(document.querySelector('#infoReservation'));
+
+  let min_menu = document.querySelector('#min__Menu__Icon');
+  let active = false;
+  min_menu.addEventListener('click',function(){
+    let min__menu__open = document.querySelector('#min__Menu');
+    if (!active){
+      min__menu__open.style.display = 'block';
+    }else{
+      min__menu__open.style.display = 'none';
+    }
+    active = !active;
+  })
 })
 

@@ -83,11 +83,31 @@ header nav ul li{
     display: block;
     float: right;
     font-size: 2em;
+    cursor: pointer;
 }
 #min__Menu__Icon::before{
     display: none;
     font-family:FontAwesome;
     content: "\f0c9";
+}
+/* mini menu */
+#min__Menu{
+    display: none;
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align: center;
+    transition: .3s ease-in;
+}
+#min__Menu ul{
+    padding: 10px 20px;
+    margin: 0;
+}
+#min__Menu li{
+    padding:10px 0;
+}
+#min__Menu li:hover{
+    border-bottom: 2px solid white;
 }
 /* Sliders Zone*/
 .carousel{
