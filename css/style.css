@@ -75,7 +75,7 @@ header nav ul{
 header nav ul li{
     margin:0 1em;
 }
-#min__menu{
+#min__Menu__Icon{
     position: absolute;
     right: 20px;
     top:50%;
@@ -84,7 +84,7 @@ header nav ul li{
     float: right;
     font-size: 2em;
 }
-#min__menu::before{
+#min__Menu__Icon::before{
     display: none;
     font-family:FontAwesome;
     content: "\f0c9";
@@ -300,7 +300,7 @@ footer{
 header nav ul{
     display: none;
 }
-#min__menu::before{
+#min__Menu__Icon::before{
     display: block;
 }
 /* zone maps */
