@@ -44,13 +44,9 @@ class leafletMaps{
       if(station.status !== "CLOSED"){
         this.bounds.push(station.position)
         
-        L.marker(station.position,{
-          icon: this.selectIcon(station.veloDispo,station.maxPlaces)
-        })
-        .on('click', function(){
-          station.HTML_Contruction()
-        })
-        .addTo(this.map);
+        L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
+          .on('click', function(){station.infoStation()})
+          .addTo(this.map);
 
       }
     }

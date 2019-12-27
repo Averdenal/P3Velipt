@@ -8,5 +8,6 @@ class htmlCreation{
         var body = document.getElementById('body')
         body.classList.remove('active');
     }
+    
 
 }

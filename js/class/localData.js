@@ -1,5 +1,7 @@
 class localData{
-
+    constructor(){
+        this.interface = new interfaceUser();
+    }
     /**
      * efface les informations dans le localStorage
      * - Nom de la station
@@ -8,8 +10,7 @@ class localData{
      * - Nom
      */
     infoResaRemove($element){
-    let actualistation = new interfaceUser();
-    actualistation.actualisationHtmlElement($element);
+    this.interface.actualisationHtmlElement($element);
     this.localStorageRemouve();
     }
     
@@ -57,40 +58,6 @@ class localData{
                 localStorage.setItem('signature',fOption.reservationSignature)
             }
         }
-        
-    }
-    infoResa($element){
-        var nom = localStorage.getItem('nom')
-        var prenom = localStorage.getItem('prenom')
-        if(localStorage.getItem('signature') === 'OK'){
-            var time = new Date().getTime()
-            if(time < parseInt(localStorage.getItem('resaTime')) + (30*60000)){
-                var restantTime = (((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)/60000).toFixed(0)
-                var p = document.createElement('p')
-                p.innerHTML = nom+" "+prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+restantTime+"min"
-                $element.appendChild(p)
-
-                var btback = document.createElement('button')
-                btback.setAttribute('class','btBack')
-                btback.textContent = "Annuler"
-                btback.addEventListener('click',()=>{
-                    this.infoResaRemove($element)
-                }
-                
-                )
-                $element.appendChild(btback)
-            }else{
-                this.infoResaRemove($element)
-            }
-            
-        }
-    }
-    actualistationReservationInfo($inforesa){
-        this.infoResa($inforesa);
-        setInterval(()=>{
-            new interfaceUser().actualisationHtmlElement($inforesa);
-            this.infoResa($inforesa);
-        },10000);
     }
 }
     

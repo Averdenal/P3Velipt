@@ -35,7 +35,7 @@ class interfaceUser{
             $element.innerHTML=optionCreat.contenu;
         };
         if(optionCreat.raz){
-            this.actualisationHtmlElement(optionCreat.elementParent);
+            this.razHtmlElement(optionCreat.elementParent);
         }
         if(optionCreat.htmlElement === 'input'){
             $element.placeholder = optionCreat.placeholder;
@@ -70,7 +70,7 @@ class interfaceUser{
      * innerHTML = ""
      * @param {HTML_Element} element 
      */
-    actualisationHtmlElement(element){
+    razHtmlElement(element){
         if(element.children.length !== 0){
             element.innerHTML =""
           }
@@ -85,5 +85,34 @@ class interfaceUser{
           }else{
             element.style.border ='2px solid green'
           }
+    }
+    
+    compteARebours(option={}){
+        let optionCreat= Object.assign({
+            dateDebut:'',
+            dateFin:'',
+            interval:''
+        },option);
+        var dateFin = null;
+        var now = new Date().getTime();
+        if(optionCreat.dateFin==='' && optionCreat.interval !==''){
+            dateFin = now + parseInt(optionCreat.interval)
+            dateFin = new Date(dateFin).getTime();
+        }else{
+            dateFin = new Date(optionCreat.dateFin).getTime();
+        }
+        
+        var restant = now - dateFin;
+        console.log(new Date(dateFin)-new Date(now));
+        console.log(new Date(dateFin).getHours());
+        console.log(new Date(now).getHours());
+        
+        return{
+            annee:new Date(dateFin).getYear()-new Date(now).getYear(),
+            mois:new Date(dateFin).getMonth()-new Date(now).getMonth(),
+            heurs:new Date(dateFin).getHours()- new Date(now).getHours(),
+            minutes:new Date(dateFin).getMinutes()-new Date(now).getMinutes(),
+            seconds:new Date(dateFin).getSeconds()-new Date(now).getSeconds()
+        }
     }
 }
