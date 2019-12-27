@@ -4,6 +4,7 @@ class canvas{
     this.localData = new localData();
     this.signature = false;
     this.canvas = null;
+    this.down = false;
   }
 
   CreatZoneSignature(element,nom, prenom){
@@ -20,30 +21,38 @@ class canvas{
    * Gestion de la signature
    */
   creaCanvasSignature(){
-    let down = false;
     this.canvas = document.createElement('canvas');
     this.canvas.setAttribute('width','450px');
     this.canvas.setAttribute('height','200px');
-    this.canvas.onmousedown = ()=>{
-          down = true;
-        };
-        this.canvas.onmouseup = ()=>{
-          down = false;
-        };
 
-        this.canvas.onmousemove = (evt)=>{
-          let position =  this.getMousePos(this.canvas, evt);
-          var ctx = this.canvas.getContext('2d');
-          if(down){
-            ctx.lineTo(position.x, position.y); //point d'arrivée
-            this.signature = true;
-          }
-            ctx.stroke();  // fin de dessin
-            ctx.beginPath();// debut de dessin
-            ctx.moveTo(position.x, position.y); //point de départ
-        };
+    this.canvas.onmousedown = () =>{this.debutClick();}
+    this.canvas.onmouseup = () =>{this.finClick();}
+    this.canvas.onmousemove = (evt)=>{this.moveClick(evt);};
+
+    this.canvas.ontouchstart = () =>{this.debutClick();}
+    this.canvas.ontouchend = () =>{this.finClick();}
+    this.canvas.ontouchmove = (evt)=>{this.moveClick(evt);};
         
     return this.canvas;
+  }
+  debutClick(){
+    console.log("click");
+    this.down = true;
+  }
+  finClick(){
+    console.log("endClick")
+    this.down = false;
+  }
+  moveClick(evt){
+    let position =  this.getMousePos(this.canvas, evt);
+    var ctx = this.canvas.getContext('2d');
+    if(this.down){
+      ctx.lineTo(position.x, position.y); //point d'arrivée
+      this.signature = true;
+    }
+      ctx.stroke();  // fin de dessin
+      ctx.beginPath();// debut de dessin
+      ctx.moveTo(position.x, position.y); //point de départ
   }
 
   /**
@@ -107,10 +116,18 @@ class canvas{
      */
     getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect(); //position du canvas dans la page 
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
+        if (evt.type === "mousemove"){
+          return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+          };
+        }else{
+          return {
+            x: evt.targetTouches['0'].clientX - rect.left,
+            y: evt.targetTouches['0'].clientY - rect.top
+          };
+        }
+        
     }
     /**
      * efface ce qui se trouve dans le canvas

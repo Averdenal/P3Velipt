@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if(localStorage.name !== null && localStorage.signature ==="null"){
     new localData().localStorageRemouve();
   }
-  new leafletMaps().initMaps();
+  new leafletMaps('#map').initMaps();
   new localData().actualistationReservationInfo(document.querySelector('#infoReservation'));
 
   let min_menu = document.querySelector('#min__Menu__Icon');
