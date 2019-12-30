@@ -49,7 +49,8 @@ class reservation{
               htmlElement:'input',
               elementParent:$element,
               idName:element.id,
-              placeholder:element.placeholder
+              placeholder:element.placeholder,
+              className:'input__Reservation'
               
             });
           });     
@@ -57,7 +58,8 @@ class reservation{
           var btinput = this.interface.creatDivClassInterface({
             htmlElement:'button',
             elementParent:$element,
-            contenu:"réserver"
+            contenu:"Réserver",
+            className:'bt__Reservation'
           });
           btinput.addEventListener('click',()=>{this.validationInfo(nomStation);});
         }  
@@ -68,9 +70,7 @@ class reservation{
         var nom = document.getElementById('nom');
         nom.value = nom.value.toUpperCase();
         if(prenom.value !== "" && nom.value !== ""){
-
           this.interface.changeBodyFilter();
-
           this.localData.localStorageAdd({
             nomStation:nomStation,
             dateReservation:new Date().getTime(),

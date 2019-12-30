@@ -1,3 +1,6 @@
+*{
+    outline-style:none;
+}
 html, body, figure{
     margin: 0;
     padding: 0;
@@ -209,6 +212,29 @@ header nav ul li{
     display: flex;
     flex-wrap: wrap;
 }
+/************************************************************
+                        Réservation
+************************************************************/
+.input__Reservation, .bt__Reservation{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.bt__Reservation{
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    background-color: #e6da37;
+}
+.bt__Reservation:hover{
+    background-color: #e4973f;
+    transition: .3s;
+}
+
+/************************************************************
+                        Canvas
+************************************************************/
 #canvas{
     z-index: 1000;
     position: fixed;
@@ -319,30 +345,30 @@ footer{
     filter: blur(20px);
 }
 @media screen and (max-width: 640px){
-/* Menu */
-header #header-logo {
-    flex: 70%;
-    margin: 0 10px;
-}
-header nav ul{
-    display: none;
-}
-#min__Menu__Icon::before{
-    display: block;
-}
-/* zone maps */
-#maps-zone{
-    margin-bottom: 1vh;
-    flex-wrap: wrap;
-    height: auto;
-}
-#maps-zone #map{
-    flex: 2 100%;
-    height: 400px;
-    margin: 0;
-}
-#maps-zone #info{
-    flex:1 100%;
-    padding:10px;
-}
+    /* Menu */
+    header #header-logo {
+        flex: 70%;
+        margin: 0 10px;
+    }
+    header nav ul{
+        display: none;
+    }
+    #min__Menu__Icon::before{
+        display: block;
+    }
+    /* zone maps */
+    #maps-zone{
+        margin-bottom: 1vh;
+        flex-wrap: wrap;
+        height: auto;
+    }
+    #maps-zone #map{
+        flex: 2 100%;
+        height: 400px;
+        margin: 0;
+    }
+    #maps-zone #info{
+        flex:1 100%;
+        padding:10px;
+    }
 }
