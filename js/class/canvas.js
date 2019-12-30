@@ -84,8 +84,10 @@ class canvas{
     });
     btValider.addEventListener('click',()=>{
       if(this.signature){
+        let time = new Date().getTime();
         this.localData.localStorageAdd({
-          signature:'OK'
+          signature:'OK',
+          dateReservation:time
         });
         document.location.reload(true);
       }else{

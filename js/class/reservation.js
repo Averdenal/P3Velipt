@@ -73,7 +73,6 @@ class reservation{
           this.interface.changeBodyFilter();
           this.localData.localStorageAdd({
             nomStation:nomStation,
-            dateReservation:new Date().getTime(),
             nom:nom.value,
             prenom:prenom.value
           });

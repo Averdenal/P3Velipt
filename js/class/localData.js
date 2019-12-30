@@ -28,24 +28,24 @@ class localData{
      */
     localStorageAdd(option = {}){
         let fOption = Object.assign({
-            nomStation:null,
-            dateReservation:null,
-            nom:null,
-            prenom:null,
-            signature:null
+            nomStation:'',
+            dateReservation:'',
+            nom:'',
+            prenom:'',
+            signature:''
         },option) 
 
-        if(localStorage.getItem('signature') === "null" || localStorage.getItem('signature') === null){
-            if(localStorage.getItem('resaStation') === null){
+        if(localStorage.getItem('signature') === '' || localStorage.getItem('signature') === null){
+            if(localStorage.getItem('resaStation') === null || localStorage.getItem('resaStation') === ''){
                 localStorage.setItem('resaStation',fOption.nomStation)
             }
-            if(localStorage.getItem('resaTime') === null){
+            if(localStorage.getItem('resaTime') === null || localStorage.getItem('resaTime') === ''){
                 localStorage.setItem('resaTime',fOption.dateReservation)
             }
-            if(localStorage.getItem('nom') === null){
+            if(localStorage.getItem('nom') === null || localStorage.getItem('nom') === ''){
                 localStorage.setItem('nom',fOption.nom)
             }
-            if(localStorage.getItem('prenom') === null){
+            if(localStorage.getItem('prenom') === null || localStorage.getItem('prenom') === ''){
                 localStorage.setItem('prenom',fOption.prenom)
             }
             if(localStorage.getItem('signature')!=='OK'){
