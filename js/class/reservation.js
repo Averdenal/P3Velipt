@@ -25,11 +25,9 @@ class reservation{
                     contenu:'Annuler',
                     elementParent:$element});
     
-                btback.addEventListener('click',()=>{
-                    this.localData.infoResaRemove($element)
-                });
+                btback.addEventListener('click',()=>{this.localData.localStorageRemove()});
             }else{
-                this.localData.infoResaRemove($element);
+                this.localData.localStorageRemove();
             }
             
         }

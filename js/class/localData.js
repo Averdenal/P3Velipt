@@ -2,20 +2,8 @@ class localData{
     constructor(){
         this.interface = new interfaceUser();
     }
-    /**
-     * efface les informations dans le localStorage
-     * - Nom de la station
-     * - Date de réservation (ms)
-     * - Prénom
-     * - Nom
-     * @param {HTML_ELement} $element
-     */
-    infoResaRemove($element){
-        this.interface.razHtmlElement($element);
-        this.localStorageRemouve();
-    }
     
-    localStorageRemouve(){
+    localStorageRemove(){
         localStorage.removeItem('resaStation')
         localStorage.removeItem('resaTime')
         localStorage.removeItem('prenom')
@@ -25,7 +13,7 @@ class localData{
     }
 
     /**
-     * ajout des informations dans le localStorage
+     * Ajout des informations dans le localStorage
      * @param {objet} option 
      * @param {string} option.resevationNomStation
      * @param {string} option.reservationDate

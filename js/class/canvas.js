@@ -103,7 +103,7 @@ class canvas{
       elementParent:div
     });
     btAnnuler.addEventListener('click',()=>{
-      this.localData.localStorageRemouve();
+      this.localData.localStorageRemove();
       document.location.reload(true);
     });
     return div;

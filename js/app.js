@@ -13,7 +13,7 @@ class app{
     this.carousel.play()
   
     if(localStorage.name !== null && localStorage.signature ==="null"){
-      this.localData.localStorageRemouve();
+      this.localData.localStorageRemove();
     }
     this.map.initMaps();
     this.reservation.actualistationReservationInfo(document.querySelector('#infoReservation'));
