@@ -86,4 +86,9 @@ class interfaceUser{
             element.style.border ='2px solid green'
           }
     }
+
+    changeBodyFilter(){
+        var body = document.getElementById('body')
+        body.classList.add('active');
+    }
 }

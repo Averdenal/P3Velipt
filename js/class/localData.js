@@ -8,10 +8,11 @@ class localData{
      * - Date de réservation (ms)
      * - Prénom
      * - Nom
+     * @param {HTML_ELement} $element
      */
     infoResaRemove($element){
-    this.interface.actualisationHtmlElement($element);
-    this.localStorageRemouve();
+        this.interface.razHtmlElement($element);
+        this.localStorageRemouve();
     }
     
     localStorageRemouve(){

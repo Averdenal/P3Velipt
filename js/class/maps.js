@@ -21,7 +21,7 @@ class leafletMaps{
     }
     /**
      * chargement de la map
-     * @param {HTML_Element} element 
+     * @param {Object} Station
      */
     load(element){
       this.map = L.map(element)
@@ -34,7 +34,7 @@ class leafletMaps{
     }
    
     /**
-     * ajout d'un marker sur la carte
+     * ajout d'un marker sur la carte sauf les stations fermées
      * @param {int} lat 
      * @param {int} lng 
      * @param {int} maxPlaces 

@@ -2,6 +2,7 @@ class reservation{
     constructor(){
         this.interface = new interfaceUser();
         this.localData = new localData();
+        this.canvas = new canvas();
         this.nom = localStorage.getItem('nom');
         this.prenom = localStorage.getItem('prenom');
         this.signature = localStorage.getItem('signature');
@@ -61,30 +62,32 @@ class reservation{
             elementParent:$element,
             contenu:"réserver"
           });
-          btinput.addEventListener('click',()=>{
-            var prenom = document.getElementById('prenom');
-            var nom = document.getElementById('nom');
-            nom.value = nom.value.toUpperCase();
-            if(prenom.value !== "" && nom.value !== ""){
-    
-              this.htmlContruction.changeBodyFilter();
-    
-              this.localData.localStorageAdd({
-                resevationNomStation:nomStation,
-                reservationDate:new Date().getTime(),
-                reservationNom:nom.value,
-                reservationPrenom:prenom.value
-              });
-    
-              var canvaszone = document.getElementById('canvas');
-              canvaszone.style.display = "flex";          
-              this.canvas.CreatZoneSignature(canvaszone,nom.value, prenom.value);
-            }else{
-              this.interface.verifInputVide(prenom);
-              this.interface.verifInputVide(nom);
-            }
-          })
+          btinput.addEventListener('click',()=>{this.validationInfo(nomStation);});
         }  
 
+    }
+    validationInfo(nomStation){
+        var prenom = document.getElementById('prenom');
+        var nom = document.getElementById('nom');
+        nom.value = nom.value.toUpperCase();
+        if(prenom.value !== "" && nom.value !== ""){
+
+          this.interface.changeBodyFilter();
+
+          this.localData.localStorageAdd({
+            resevationNomStation:nomStation,
+            reservationDate:new Date().getTime(),
+            reservationNom:nom.value,
+            reservationPrenom:prenom.value
+          });
+
+          var canvaszone = document.getElementById('canvas');
+          canvaszone.style.display = "flex";          
+          this.canvas.CreatZoneSignature(canvaszone,nom.value, prenom.value);
+        }else{
+          this.interface.verifInputVide(prenom);
+          this.interface.verifInputVide(nom);
+        }
+      
     }
 }
