@@ -4,48 +4,57 @@ class localData{
     }
     
     localStorageRemove(){
-        localStorage.removeItem('resaStation')
-        localStorage.removeItem('resaTime')
-        localStorage.removeItem('prenom')
-        localStorage.removeItem('nom')
-        localStorage.removeItem('signature')
-        localStorage.removeItem('signatureZone');
+        localStorage.removeItem('resaStation');
+        localStorage.removeItem('resaTime');
+        localStorage.removeItem('prenom');
+        localStorage.removeItem('nom');
+        localStorage.removeItem('signature');
     }
 
     /**
      * Ajout des informations dans le localStorage
      * @param {objet} option 
-     * @param {string} option.resevationNomStation
-     * @param {string} option.reservationDate
-     * @param {string} option.reservationNom
-     * @param {string} option.reservationPrenom
-     * @param {string} option.reservationSignature
+     * @param {string} option.nomStation
+     * @param {string} option.dateReservation
+     * @param {string} option.nom
+     * @param {string} option.prenom
+     * @param {string} option.signature
      */
     localStorageAdd(option = {}){
         let fOption = Object.assign({
-            resevationNomStation:null,
-            reservationDate:null,
-            reservationNom:null,
-            reservationPrenom:null,
-            reservationSignature:null
+            nomStation:null,
+            dateReservation:null,
+            nom:null,
+            prenom:null,
+            signature:null
         },option) 
 
         if(localStorage.getItem('signature') === "null" || localStorage.getItem('signature') === null){
             if(localStorage.getItem('resaStation') === null){
-                localStorage.setItem('resaStation',fOption.resevationNomStation)
+                localStorage.setItem('resaStation',fOption.nomStation)
             }
             if(localStorage.getItem('resaTime') === null){
-                localStorage.setItem('resaTime',fOption.reservationDate)
-            }
-            if(localStorage.getItem('prenom') === null){
-                localStorage.setItem('prenom',fOption.reservationPrenom)
+                localStorage.setItem('resaTime',fOption.dateReservation)
             }
             if(localStorage.getItem('nom') === null){
-                localStorage.setItem('nom',fOption.reservationNom)
+                localStorage.setItem('nom',fOption.nom)
+            }
+            if(localStorage.getItem('prenom') === null){
+                localStorage.setItem('prenom',fOption.prenom)
             }
             if(localStorage.getItem('signature')!=='OK'){
-                localStorage.setItem('signature',fOption.reservationSignature)
+                localStorage.setItem('signature',fOption.signature)
             }
+        }
+    }
+
+    localStorageRead(){
+        return {
+            nomStation:localStorage.getItem('resaStation'),
+            dateReservation: localStorage.getItem('resaTime'),
+            prenom:localStorage.getItem('prenom'),
+            nom:localStorage.getItem('nom'),
+            signature:localStorage.getItem('signature')
         }
     }
 }

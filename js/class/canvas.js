@@ -85,9 +85,8 @@ class canvas{
     btValider.addEventListener('click',()=>{
       if(this.signature){
         this.localData.localStorageAdd({
-          reservationSignature:'OK'
+          signature:'OK'
         });
-        localStorage.setItem('signatureZone','none');
         document.location.reload(true);
       }else{
         this.canvas.style.border ='2px solid red';

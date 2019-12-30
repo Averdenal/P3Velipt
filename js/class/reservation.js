@@ -3,19 +3,17 @@ class reservation{
         this.interface = new interfaceUser();
         this.localData = new localData();
         this.canvas = new canvas();
-        this.nom = localStorage.getItem('nom');
-        this.prenom = localStorage.getItem('prenom');
-        this.signature = localStorage.getItem('signature');
+        this.informationLocal = this.localData.localStorageRead();
     }
 
     footerInformationReservationActif($element){
-        if( this.signature === 'OK'){
+        if( this.informationLocal.signature === 'OK'){
             var time = new Date().getTime()
             if(time < parseInt(localStorage.getItem('resaTime')) + (30*60000)){
                 var restantTime = ((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)
                 this.interface.creatDivClassInterface({
                     htmlElement:'p',
-                    contenu: this.nom+" "+this.prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+new Date(restantTime).getMinutes()+":"+new Date(restantTime).getSeconds(),
+                    contenu: this.informationLocal.nom+" "+ this.informationLocal.prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+new Date(restantTime).getMinutes()+":"+new Date(restantTime).getSeconds(),
                     elementParent:$element
                 })
 
@@ -73,10 +71,10 @@ class reservation{
           this.interface.changeBodyFilter();
 
           this.localData.localStorageAdd({
-            resevationNomStation:nomStation,
-            reservationDate:new Date().getTime(),
-            reservationNom:nom.value,
-            reservationPrenom:prenom.value
+            nomStation:nomStation,
+            dateReservation:new Date().getTime(),
+            nom:nom.value,
+            prenom:prenom.value
           });
 
           var canvaszone = document.getElementById('canvas');
