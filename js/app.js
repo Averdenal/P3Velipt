@@ -10,8 +10,6 @@ class app{
     this.localData = new localData();
   }
   init(){
-    var test = new interfaceUser();
-    console.log(test.compteARebours({interval:60000*30}))
     this.carousel.play()
   
     if(localStorage.name !== null && localStorage.signature ==="null"){

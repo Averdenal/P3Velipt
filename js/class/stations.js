@@ -2,6 +2,7 @@ class Station{
 
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
       this.interface = new interfaceUser();
+      this.resevation = new reservation();
       this.number = number;
       this.name = this.nameChange(name);
       this.adresse = adresse;
@@ -46,5 +47,7 @@ class Station{
           elementParent:$element
         });
       });
+
+      this.resevation.uiReservation(document.getElementById('reservation'),this.veloDispo,this.name);
     }
   }

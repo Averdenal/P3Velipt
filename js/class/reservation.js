@@ -11,10 +11,10 @@ class reservation{
         if( this.signature === 'OK'){
             var time = new Date().getTime()
             if(time < parseInt(localStorage.getItem('resaTime')) + (30*60000)){
-                var restantTime = (((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)/60000).toFixed(0)
+                var restantTime = ((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)
                 this.interface.creatDivClassInterface({
                     htmlElement:'p',
-                    contenu: this.nom+" "+this.prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+restantTime+"min",
+                    contenu: this.nom+" "+this.prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+new Date(restantTime).getMinutes()+":"+new Date(restantTime).getSeconds(),
                     elementParent:$element
                 })
 
@@ -39,9 +39,9 @@ class reservation{
             this.footerInformationReservationActif($inforesa);
         },1000);
     }
-    uiReservation($element){
-        this.interface.razHtmlElement($element)
-        if(localStorage.getItem('signature') === null && this.veloDispo >0){
+    uiReservation($element,veloDispo,nomStation){
+        this.interface.razHtmlElement($element);
+        if(localStorage.getItem('signature') === null && veloDispo>0){
           var tabinfo = [
             {placeholder:'votre nom',id:'nom'},
             {placeholder:'votre prénom',id:'prenom'}];
@@ -58,7 +58,7 @@ class reservation{
     
           var btinput = this.interface.creatDivClassInterface({
             htmlElement:'button',
-            elementParent:$Reservation,
+            elementParent:$element,
             contenu:"réserver"
           });
           btinput.addEventListener('click',()=>{
@@ -70,7 +70,7 @@ class reservation{
               this.htmlContruction.changeBodyFilter();
     
               this.localData.localStorageAdd({
-                resevationNomStation:this.name,
+                resevationNomStation:nomStation,
                 reservationDate:new Date().getTime(),
                 reservationNom:nom.value,
                 reservationPrenom:prenom.value
