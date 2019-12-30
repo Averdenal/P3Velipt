@@ -45,7 +45,9 @@ class leafletMaps{
         this.bounds.push(station.position)
         
         L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
-          .on('click', function(){station.infoStation()})
+          .on('click', ()=>{
+            station.infoStation();
+            this.map.setView(station.position, 16)})
           .addTo(this.map);
 
       }
