@@ -9,11 +9,12 @@ class reservation{
     footerInformationReservationActif($element){
         if( this.informationLocal.signature === 'OK'){
             var time = new Date().getTime()
-            if(time < parseInt(localStorage.getItem('resaTime')) + (30*60000)){
-                var restantTime = ((parseInt(localStorage.getItem('resaTime'))+(30*60000))- time)
+            var dateReservation = (parseInt(this.informationLocal.dateReservation)+(30*60000));
+            if(time < dateReservation ){
+                var restantTime = (dateReservation - time)
                 this.interface.creatDivClassInterface({
                     htmlElement:'p',
-                    contenu: this.informationLocal.nom+" "+ this.informationLocal.prenom + ". Votre reservation de vélo sur la station "+localStorage.getItem('resaStation')+" reste active pendant "+new Date(restantTime).getMinutes()+":"+new Date(restantTime).getSeconds(),
+                    contenu: this.informationLocal.nom+" "+ this.informationLocal.prenom + ". Votre reservation de vélo sur la station "+this.informationLocal.nomStation+" reste active pendant "+new Date(restantTime).getMinutes()+":"+new Date(restantTime).getSeconds(),
                     elementParent:$element
                 })
 
@@ -23,7 +24,7 @@ class reservation{
                     contenu:'Annuler',
                     elementParent:$element});
     
-                btback.addEventListener('click',()=>{this.localData.localStorageRemove()});
+                btback.addEventListener('click',()=>{this.localData.localStorageRemove({relaod:true})});
             }else{
                 this.localData.localStorageRemove();
             }

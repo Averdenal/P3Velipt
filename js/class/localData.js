@@ -3,12 +3,18 @@ class localData{
         this.interface = new interfaceUser();
     }
     
-    localStorageRemove(){
+    localStorageRemove(option = {}){
+        let fOption = Object.assign({
+            relaod:false
+        },option)
         localStorage.removeItem('resaStation');
         localStorage.removeItem('resaTime');
         localStorage.removeItem('prenom');
         localStorage.removeItem('nom');
         localStorage.removeItem('signature');
+        if(fOption.relaod === true){
+            document.location.reload(true);
+        }
     }
 
     /**
