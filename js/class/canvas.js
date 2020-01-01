@@ -71,10 +71,8 @@ class canvas{
         className:'bt',
         elementParent:div
       });
-      btClean.addEventListener('click',()=>{
-          this.clearCanvas();
-          this.signature = false;
-      })
+      btClean.addEventListener('click',()=>{this.effacer();})
+
     let btValider = this.interface.creatDivClassInterface({
       htmlElement:'button',
       contenu:'Valider',
@@ -82,20 +80,8 @@ class canvas{
       className:'bt',
       elementParent:div
     });
-    btValider.addEventListener('click',()=>{
-      if(this.signature){
-        let time = new Date().getTime();
-        this.localData.localStorageAdd({
-          signature:'OK',
-          dateReservation:time
-        });
-        document.location.reload(true);
-      }else{
-        this.canvas.style.border ='2px solid red';
-      }
-     
-      
-    })
+    btValider.addEventListener('click',()=>{this.valider();})
+
     let btAnnuler = this.interface.creatDivClassInterface({
       htmlElement:'button',
       contenu:'Annuler',
@@ -103,10 +89,7 @@ class canvas{
       className:'bt',
       elementParent:div
     });
-    btAnnuler.addEventListener('click',()=>{
-      this.localData.localStorageRemove();
-      document.location.reload(true);
-    });
+    btAnnuler.addEventListener('click',()=>{this.annuler();});
     return div;
   }
     /**
@@ -129,6 +112,27 @@ class canvas{
           };
         }
         
+    }
+    valider(){
+      if(this.signature){
+        let time = new Date().getTime();
+        this.localData.localStorageAdd({
+          signature:'OK',
+          dateReservation:time
+        });
+        document.location.reload(true);
+      }else{
+        this.canvas.style.border = '2px solid red';
+        console.log('teste')
+      }
+    }
+    annuler(){
+      this.localData.localStorageRemove();
+      document.location.reload(true);
+    }
+    effacer(){
+      this.clearCanvas();
+      this.signature = false;
     }
     /**
      * efface ce qui se trouve dans le canvas
