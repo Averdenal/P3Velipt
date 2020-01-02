@@ -35,14 +35,11 @@ class canvas{
         
     return this.canvas;
   }
-  debutClick(){
-    console.log("click");
-    this.down = true;
-  }
-  finClick(){
-    console.log("endClick")
-    this.down = false;
-  }
+
+  debutClick(){this.down = true;}
+
+  finClick(){this.down = false;}
+
   moveClick(evt){
     let position =  this.getMousePos(this.canvas, evt);
     var ctx = this.canvas.getContext('2d');
@@ -123,7 +120,6 @@ class canvas{
         document.location.reload(true);
       }else{
         this.canvas.style.border = '2px solid red';
-        console.log('teste')
       }
     }
     annuler(){

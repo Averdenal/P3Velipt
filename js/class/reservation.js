@@ -55,7 +55,7 @@ class reservation{
             });
           });     
     
-          var btinput = this.interface.creatDivClassInterface({
+            let btinput = this.interface.creatDivClassInterface({
             htmlElement:'button',
             elementParent:$element,
             contenu:"Réserver",

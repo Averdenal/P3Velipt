@@ -70,10 +70,12 @@ class interfaceUser{
      * innerHTML = ""
      * @param {HTML_Element} element 
      */
-    razHtmlElement(element){
-        if(element.children.length !== 0){
-            element.innerHTML =""
-          }
+    razHtmlElement($element){
+        if($element !== undefined){
+            if($element.children.length !== 0){
+                $element.innerHTML =""
+              }
+        } 
     }
     /**
      * change la couleur de border si la zone est vide
