@@ -47,10 +47,19 @@ class leafletMaps{
         L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
           .on('click', ()=>{
             station.infoStation();
-            this.map.setView(station.position, 16)})
+            this.map.setView(station.position, 16);
+            this.addpopup(station)
+          })
+            
           .addTo(this.map);
 
       }
+    }
+    addpopup(station){
+      L.popup()
+        .setLatLng(station.position)
+        .setContent(station.name)
+        .openOn(this.map);
     }
     /**
      * selection du marker
@@ -72,7 +81,6 @@ class leafletMaps{
       var myIcon = L.icon({
         iconUrl: urlIcon,
         iconSize: [38, 38],
-        iconAnchor: [38, 38],
         
       });
     return myIcon
