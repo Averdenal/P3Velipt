@@ -2,7 +2,7 @@ class Station{
 
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
       this.interface = new interfaceUser();
-      this.resevation = new reservation();
+      this.resevation = new reservationManager();
       this.number = number;
       this.name = this.nameChange(name);
       this.adresse = adresse;
@@ -29,6 +29,10 @@ class Station{
         name = name.substr(1)
       }
       return name
+    }
+
+    statueStation(){
+      //"CLOSED"
     }
 
     infoStation(){

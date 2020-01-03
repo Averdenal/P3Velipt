@@ -112,9 +112,10 @@ class canvas{
     }
     valider(){
       if(this.signature){
+        
         let time = new Date().getTime();
-        this.localData.localStorageAdd({
-          signature:'OK',
+        this.localData.addReservation({
+          signature:true,
           dateReservation:time
         });
         document.location.reload(true);

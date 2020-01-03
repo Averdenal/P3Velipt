@@ -26,42 +26,42 @@ class localData{
      * @param {string} option.prenom
      * @param {string} option.signature
      */
-    localStorageAdd(option = {}){
+    addReservation(option = {}){
         let fOption = Object.assign({
             nomStation:'',
             dateReservation:'',
             nom:'',
             prenom:'',
-            signature:''
+            signature:'false'
         },option) 
-
-        if(localStorage.getItem('signature') === '' || localStorage.getItem('signature') === null){
-            if(localStorage.getItem('resaStation') === null || localStorage.getItem('resaStation') === ''){
+        console.log(fOption)
+        if(localStorage.getItem('signature') === 'false' || localStorage.getItem('signature') === null){
+            if(localStorage.getItem('resaStation') === ''|| localStorage.getItem('resaStation') === null){
                 localStorage.setItem('resaStation',fOption.nomStation)
             }
-            if(localStorage.getItem('resaTime') === null || localStorage.getItem('resaTime') === ''){
+            if(localStorage.getItem('resaTime') === '' || localStorage.getItem('resaTime') === null){
                 localStorage.setItem('resaTime',fOption.dateReservation)
             }
-            if(localStorage.getItem('nom') === null || localStorage.getItem('nom') === ''){
+            if(localStorage.getItem('nom') === '' || localStorage.getItem('nom') === null){
                 localStorage.setItem('nom',fOption.nom)
             }
-            if(localStorage.getItem('prenom') === null || localStorage.getItem('prenom') === ''){
+            if(localStorage.getItem('prenom') === '' ||localStorage.getItem('prenom') === null){
                 localStorage.setItem('prenom',fOption.prenom)
             }
-            if(localStorage.getItem('signature')!=='OK'){
+            if(localStorage.getItem('signature')!=='true'){
                 localStorage.setItem('signature',fOption.signature)
             }
         }
     }
 
-    localStorageRead(){
-        return {
-            nomStation:localStorage.getItem('resaStation'),
-            dateReservation: localStorage.getItem('resaTime'),
-            prenom:localStorage.getItem('prenom'),
-            nom:localStorage.getItem('nom'),
-            signature:localStorage.getItem('signature')
-        }
+    getReservation(){
+        let myReservation = new reservation();
+        myReservation.nomStation=localStorage.getItem('resaStation');
+        myReservation.dateReservation= localStorage.getItem('resaTime');
+        myReservation.prenom=localStorage.getItem('prenom');
+        myReservation.nom=localStorage.getItem('nom');
+        myReservation.signature=localStorage.getItem('signature');
+        return myReservation;
     }
 }
     

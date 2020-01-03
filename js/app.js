@@ -1,6 +1,6 @@
 class app{
   constructor(){
-    this.reservation = new reservation();
+    this.reservation = new reservationManager();
     this.map = new leafletMaps('#map');
     this.carousel = new carousel(document.querySelector('#slider'));
     this.localData = new localData();
@@ -10,7 +10,7 @@ class app{
   init(){
     this.carousel.play()
   
-    if(localStorage.name !== null && localStorage.signature ==="null"){
+    if(this.localData.getReservation().nom !== null && this.localData.getReservation().signature !== "true"){
       this.localData.localStorageRemove();
     }
     this.map.initMaps();
