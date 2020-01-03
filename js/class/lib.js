@@ -13,6 +13,31 @@ class interfaceUser{
      * @param {bool} option.raz vide le contenu d'un element HTML
      * @param {String} option.placeholder
      */
+    creatInputClassInterface(option = {}){
+        let optionCreat = objet.assign({
+            elementParent:'',
+            className:'',
+            type:'text',
+            value:'',
+            placeholder:''
+        },option)
+        let $element = document.createElement('input');
+        if(optionCreat.className !== ''){
+            $element.setAttribute('class',optionCreat.className);
+        };
+        $element.setAttribute('type',optionCreat.type);
+        if(optionCreat.value !== ''){
+            $element.setAttribute('value',optionCreat.value);
+        };
+        if(optionCreat.htmlElement === 'input'){
+            $element.placeholder = optionCreat.placeholder;
+        };
+        if(optionCreat.elementParent !== ''){
+            optionCreat.elementParent.appendChild($element);
+        };
+        return $element;
+
+    }
     creatDivClassInterface(option = {}){
         let optionCreat = Object.assign({
             htmlElement:'div',
@@ -21,7 +46,7 @@ class interfaceUser{
             contenu:'',
             elementParent:'',
             raz:false,
-            placeholder:''
+
         },option);
 
         let $element =document.createElement(optionCreat.htmlElement);
@@ -36,9 +61,6 @@ class interfaceUser{
         };
         if(optionCreat.raz){
             this.razHtmlElement(optionCreat.elementParent);
-        }
-        if(optionCreat.htmlElement === 'input'){
-            $element.placeholder = optionCreat.placeholder;
         }
         if(optionCreat.elementParent !== ''){
             optionCreat.elementParent.appendChild($element);
@@ -83,9 +105,11 @@ class interfaceUser{
      */
     verifInputVide(element){
         if(element.value === ""){
-            element.style.border ='2px solid red'
+            element.classList.add('false')
+            return true;
           }else{
-            element.style.border ='2px solid green'
+            element.classList.remove('false')
+            return false;
           }
     }
 

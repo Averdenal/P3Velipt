@@ -18,15 +18,15 @@ class reservation{
     }
 
     getDetailTempsRestant(){
-        let restantTime = this.tempRestant();
-        return {
-            m:new Date(restantTime).getMinutes(),
-            s:new Date(restantTime).getSeconds()
-          }
+      let restantTime = this.tempRestant();
+      return {
+          m:new Date(restantTime).getMinutes(),
+          s:new Date(restantTime).getSeconds()
+        }
     }
     isSignatureOK(){
-        console.log(this.signature);
-        return this.signature === 'true';
+      console.log(this.signature);
+      return this.signature === 'true';
 
     }
 }
