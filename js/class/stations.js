@@ -31,12 +31,15 @@ class Station{
       return name
     }
 
-    statueStation(){
-      //"CLOSED"
+    getStatusStation(){
+      if(this.status === 'OPEN'){
+        return true;
+      }else{
+        return false;
+      }
     }
 
     infoStation(){
-      document.getElementById('info').style.flex = 1;
       var tabInfoZone = [
         {query:'#nbStation',contenu:"Station : "+this.number},
         {query:'#nomStation',contenu:this.name},

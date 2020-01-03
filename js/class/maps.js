@@ -41,7 +41,8 @@ class leafletMaps{
      * @param {int} veloDispo 
      */
     addMarket(station){
-      if(station.status !== "CLOSED"){
+      console.log(station.status+'//'+station.getStatusStation())
+      if(station.getStatusStation()){
         this.bounds.push(station.position)
         
         L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
