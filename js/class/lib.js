@@ -1,4 +1,5 @@
 class interfaceUser{
+
     /**
      * création d'élements HTML avec class et ID 
      * variables non obligatoire
@@ -117,4 +118,24 @@ class interfaceUser{
         var body = document.getElementById('body')
         body.classList.add('active');
     }
+
+    afficheStation(station){
+        var tabInfoZone = [
+            {query:'#nbStation',contenu:"Station : "+station.number},
+            {query:'#nomStation',contenu:station.name},
+            {query:'#addressStation',contenu:"Adresse : <br />"+station.adresse},
+            {query:'#veloDispoStation',contenu:"Vélo disponible.s : "+station.veloDispo+"/"+station.maxPlaces}];
+
+        tabInfoZone.forEach(element => {
+            var $element = document.querySelector(element.query);
+            this.creatDivClassInterface({
+            htmlElement:'p',
+            contenu:element.contenu,
+            raz:true,
+            elementParent:$element
+            });
+        });
+
+        new reservationManager().uiReservation(document.getElementById('reservation'),station.veloDispo,station.name);
+        }
 }

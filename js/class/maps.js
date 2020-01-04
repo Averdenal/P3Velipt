@@ -5,6 +5,7 @@ class leafletMaps{
         this.station = null;
         this.URL = "https://api.jcdecaux.com/vls/v1/stations?contract=nantes&apiKey=096983f1e05f95e3c792a500e2499e840cf58f2d";
         this.$map = document.querySelector($map);
+        this.interface = new interfaceUser();
 
     }
 
@@ -47,7 +48,7 @@ class leafletMaps{
         
         L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
           .on('click', ()=>{
-            station.infoStation();
+            this.interface.afficheStation(station);
             this.map.setView(station.position, 16);
             this.addpopup(station)
           })

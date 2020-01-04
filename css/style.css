@@ -306,8 +306,10 @@ header nav ul li{
     font-size: 2rem;
 }
 #reservation{
-    display: grid;
     width: 100%;
+}
+#reservation form{
+    display: grid;
 }
 
 /* Pied de Page zone */
