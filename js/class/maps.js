@@ -42,7 +42,6 @@ class leafletMaps{
      * @param {int} veloDispo 
      */
     addMarket(station){
-      console.log(station.status+'//'+station.getStatusStation())
       if(station.getStatusStation()){
         this.bounds.push(station.position)
         

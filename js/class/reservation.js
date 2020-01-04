@@ -25,8 +25,6 @@ class reservation{
         }
     }
     isSignatureOK(){
-      console.log(this.signature);
       return this.signature === 'true';
-
     }
 }

@@ -34,7 +34,6 @@ class localData{
             prenom:'',
             signature:'false'
         },option) 
-        console.log(fOption)
         if(localStorage.getItem('signature') === 'false' || localStorage.getItem('signature') === null){
             if(localStorage.getItem('resaStation') === ''|| localStorage.getItem('resaStation') === null){
                 localStorage.setItem('resaStation',fOption.nomStation)

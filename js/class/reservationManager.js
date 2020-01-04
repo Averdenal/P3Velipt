@@ -55,7 +55,8 @@ class reservationManager{
               elementParent:$form,
               idName:element.id,
               placeholder:element.placeholder,
-              className:'input__Reservation'
+              className:'input__Reservation',
+              required:true
               
             });
           });     
@@ -67,9 +68,10 @@ class reservationManager{
             className:'bt__Reservation'
           });
           btinput.addEventListener('click',(evt)=>{
-            evt.stopPropagation();
-            evt.preventDefault();
-            this.validationInfo(nomStation);});
+            
+            this.validationInfo(nomStation);
+            evt.preventDefault();});
+            
         }  
 
     }
