@@ -68,7 +68,6 @@ class reservationManager{
             className:'bt__Reservation'
           });
           btinput.addEventListener('click',(evt)=>{
-            
             this.validationInfo(nomStation);
             evt.preventDefault();});
             

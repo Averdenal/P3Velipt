@@ -1,17 +1,18 @@
 class leafletMaps{
     constructor($map){
-        this.map = null;
-        this.bounds = [];
-        this.station = null;
-        this.URL = "https://api.jcdecaux.com/vls/v1/stations?contract=nantes&apiKey=096983f1e05f95e3c792a500e2499e840cf58f2d";
-        this.$map = document.querySelector($map);
-        this.interface = new interfaceUser();
-
+      this.map = null;
+      this.bounds = [];
+      this.station = null;
+      this.data = new data();
+      this.$map = document.querySelector($map);
+      this.interface = new interfaceUser();
     }
-
+    /**
+     * Initialisation de la map avec les données (marker)
+     */
     initMaps(){
       this.load(this.$map);
-      var reponse = $.getJSON(this.URL)
+      var reponse = $.getJSON(this.data.getUrlDataAPI())
       .always(()=>{
         reponse.responseJSON.forEach(element => {
           var station = new Station(element.number,element.name, element.address, element.position, element.status, element.available_bikes, element.bike_stands);
@@ -25,7 +26,7 @@ class leafletMaps{
      * @param {Object} Station
      */
     load(element){
-      this.map = L.map(element)
+      this.map = L.map(element);
       this.map.options.minZoom =12.4;
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
       {
@@ -56,12 +57,18 @@ class leafletMaps{
 
       }
     }
+
+    /**
+     * création de popup sur les markers
+     * @param {Objet Station} station 
+     */
     addpopup(station){
       L.popup()
         .setLatLng(station.position)
         .setContent(station.name)
         .openOn(this.map);
     }
+
     /**
      * selection du marker
      * @param {int} veloDispo 

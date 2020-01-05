@@ -8,12 +8,7 @@ class carousel{
     let childRoot = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
     this.container = this.interface.creatDivClassInterface({className:'carousel__Container',elementParent:childRoot});
     this.index = 0;
-    this.data =
-    [
-        {titre:"Un Clic!",textInfo:"Sur un marcker.", URL:"imgs/sliders/velo1.jpg"},
-        {titre:"Un Clic!",textInfo:"Entrer vos informations.", URL:"imgs/sliders/velo2.jpg"},
-        {titre:"Et un Clic!",textInfo:"Entrer votre signature.", URL:"imgs/sliders/velo3.jpg"}
-    ];
+    this.data = new data()
     this.nbData = 0;
     this.intervalCarousel = null;
     this.playinterval = true;
@@ -23,7 +18,7 @@ class carousel{
   }
 
   creatCarouselItem(container){
-    this.data.forEach(element => {
+    this.data.getDataCarousel().forEach(element => {
       let item = this.interface.creatDivClassInterface({htmlElement:'figure',className:'carousel__Item',elementParent:container});
       this.interface.creatImgInterface({src:element.URL,elementParent:item});
       this.interface.creatDivClassInterface({htmlElement:'figcaption',className:'carousel__Item__Info',elementParent:item,contenu:'<h2>'+element.titre+'</h2><p>'+element.textInfo+'</p>'});
