@@ -97,11 +97,17 @@ class interfaceUser{
           }
     }
 
+    /**
+     * ajout class lors de l'ouveture de la zone signature.
+     */
     changeBodyFilter(){
         var body = document.getElementById('body')
         body.classList.add('active');
     }
-
+    /**
+     * afficher les informations de la station
+     * @param {Objet} station 
+     */
     afficheStation(station){
         var tabInfoZone = [
             {query:'#nbStation',contenu:"Station : "+station.number},

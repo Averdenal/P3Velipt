@@ -10,13 +10,17 @@ class reservation{
     isReservationCanceled(){
         return 0 > this.tempRestant();
     }
-
+    /**
+     * retourne le temps restant 
+     */
     tempRestant(){
         let time = new Date().getTime()
         let dateFinReservation = (parseInt(this.dateReservation)+(30*60000));
         return dateFinReservation - time;
     }
-
+    /**
+     * temps restant en minute et secondes
+     */
     getDetailTempsRestant(){
       let restantTime = this.tempRestant();
       return {

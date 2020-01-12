@@ -32,13 +32,22 @@ class reservationManager{
             
         }
     }
-
+    /**
+     * actualise la zone réservation footer
+     * @param {HTML_Element} $inforesa 
+     */
     actualistationReservationInfo($inforesa){
         setInterval(()=>{
             this.interface.razHtmlElement($inforesa);
             this.footerInformationReservationActif($inforesa);
         },1000);
     }
+    /**
+     * Affiche le zone de réservation
+     * @param {HTML_Element} $element 
+     * @param {int} veloDispo 
+     * @param {string} nomStation 
+     */
     uiReservation($element,veloDispo,nomStation){
         this.interface.razHtmlElement($element);
         if(localStorage.getItem('signature') === null && veloDispo>0){
@@ -74,6 +83,10 @@ class reservationManager{
         }  
 
     }
+    /**
+     * vérif input et enregistre les informations de la station dans loueur en local storage
+     * @param {string} nomStation 
+     */
     validationInfo(nomStation){
         var prenom = document.getElementById('prenom');
         var nom = document.getElementById('nom');
