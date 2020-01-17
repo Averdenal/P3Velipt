@@ -9,26 +9,26 @@ class reservationManager{
     footerInformationReservationActif($element){
       let myReservation = this.localData.getReservation();
         if(myReservation.isSignatureOK()){
-            if(!myReservation.isReservationCanceled()){
-              this.interface.creatDivClassInterface({
-                    htmlElement:'p',
-                    contenu: myReservation.nom+" "+ myReservation.prenom +
-                      ". Votre reservation de vélo sur la station "+myReservation.nomStation+
-                      " reste active pendant "+myReservation.getDetailTempsRestant().m+":"
-                      +myReservation.getDetailTempsRestant().s,
-                    elementParent:$element
-                })
+          if(!myReservation.isReservationCanceled()){
+            this.interface.creatDivClassInterface({
+              htmlElement:'p',
+              contenu: myReservation.nom+" "+ myReservation.prenom +
+                ". Votre reservation de vélo sur la station "+myReservation.nomStation+
+                " reste active pendant "+myReservation.getDetailTempsRestant().m+":"
+                +myReservation.getDetailTempsRestant().s,
+              elementParent:$element
+              })
 
-                var btback = this.interface.creatDivClassInterface({
-                    htmlElement:'button',
-                    className:'btBack',
-                    contenu:'Annuler',
-                    elementParent:$element});
-    
-                btback.addEventListener('click',()=>{this.localData.localStorageRemove({relaod:true})});
-            }else{
-                this.localData.localStorageRemove();
-            }
+              var btback = this.interface.creatDivClassInterface({
+                  htmlElement:'button',
+                  className:'btBack',
+                  contenu:'Annuler',
+                  elementParent:$element});
+  
+              btback.addEventListener('click',()=>{this.localData.localStorageRemove({relaod:true})});
+          }else{
+              this.localData.localStorageRemove();
+          }
             
         }
     }
