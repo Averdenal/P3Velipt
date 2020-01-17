@@ -212,6 +212,11 @@ header nav ul li{
     display: flex;
     flex-wrap: wrap;
 }
+
+
+.leaflet-popup {
+    margin-bottom: 40px!important;
+}
 /************************************************************
                         Réservation
 ************************************************************/

@@ -38,24 +38,4 @@ class Station{
         return false;
       }
     }
-
-    infoStation(){
-      var tabInfoZone = [
-        {query:'#nbStation',contenu:"Station : "+this.number},
-        {query:'#nomStation',contenu:this.name},
-        {query:'#addressStation',contenu:"Adresse : <br />"+this.adresse},
-        {query:'#veloDispoStation',contenu:"Vélo disponible.s : "+this.veloDispo+"/"+this.maxPlaces}];
-
-      tabInfoZone.forEach(element => {
-        var $element = document.querySelector(element.query);
-        this.interface.creatDivClassInterface({
-          htmlElement:'p',
-          contenu:element.contenu,
-          raz:true,
-          elementParent:$element
-        });
-      });
-
-      this.resevation.uiReservation(document.getElementById('reservation'),this.veloDispo,this.name);
-    }
   }

@@ -2,7 +2,7 @@ class reservationManager{
     constructor(){
         this.interface = new interfaceUser();
         this.localData = new localData();
-        this.canvas = new canvas();
+        this.canvas = new signatureManager();
         this.dateReservation = null;
     }
 
