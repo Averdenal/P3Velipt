@@ -126,5 +126,5 @@ class interfaceUser{
         });
 
         new reservationManager().uiReservation(document.getElementById('reservation'),station.veloDispo,station.name);
-        }
+    }
 }

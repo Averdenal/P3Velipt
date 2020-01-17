@@ -1,4 +1,5 @@
 class app{
+
   constructor(){
     this.reservation = new reservationManager();
     this.map = new leafletMaps('#map');
@@ -7,6 +8,7 @@ class app{
     this.infoReservation = document.querySelector('#infoReservation');
     this.active = false;
   }
+
   init(){
     this.carousel.play()
   
@@ -16,7 +18,6 @@ class app{
     this.map.initMaps();
     this.reservation.actualistationReservationInfo(this.infoReservation);
     this.minMenu();
-    
   }
 
   minMenu(){

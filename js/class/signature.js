@@ -57,8 +57,8 @@ class signature{
             y: evt.targetTouches['0'].clientY - rect.top
           };
         }
-        
     }
+
     valider(){
         if(this.signature){
           
@@ -72,14 +72,17 @@ class signature{
           this.canvas.style.border = '2px solid red';
         }
     }
+
     annuler(){
         this.localData.localStorageRemove();
         document.location.reload(true);
     }
+
     effacer(){
         this.clearCanvas();
         this.signature = false;
     }
+
     /**
      * efface ce qui se trouve dans le canvas
      */

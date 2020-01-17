@@ -12,7 +12,6 @@ class carousel{
     this.nbData = 0;
     this.intervalCarousel = null;
     this.playinterval = true;
-
     this.creatCarouselItem(this.container);
     this.creatBt(childRoot);
   }
