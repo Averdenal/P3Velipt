@@ -8,37 +8,37 @@ class signature{
     }
 
     creaCanvasSignature(){
-        this.canvas = document.createElement('canvas');
-        this.canvas.setAttribute('width','450px');
-        this.canvas.setAttribute('height','200px');
+      this.canvas = document.createElement('canvas');
+      this.canvas.setAttribute('width','450px');
+      this.canvas.setAttribute('height','200px');
+  
+      this.canvas.onmousedown = () =>{this.debutClick();}
+      this.canvas.onmouseup = () =>{this.finClick();}
+      this.canvas.onmousemove = (evt)=>{this.moveClick(evt);};
+  
+      this.canvas.ontouchstart = () =>{this.debutClick();}
+      this.canvas.ontouchend = () =>{this.finClick();}
+      this.canvas.ontouchmove = (evt)=>{this.moveClick(evt);};
+          
+      return this.canvas;
+    }
     
-        this.canvas.onmousedown = () =>{this.debutClick();}
-        this.canvas.onmouseup = () =>{this.finClick();}
-        this.canvas.onmousemove = (evt)=>{this.moveClick(evt);};
-    
-        this.canvas.ontouchstart = () =>{this.debutClick();}
-        this.canvas.ontouchend = () =>{this.finClick();}
-        this.canvas.ontouchmove = (evt)=>{this.moveClick(evt);};
-            
-        return this.canvas;
+    debutClick(){this.down = true;}
+  
+    finClick(){this.down = false;}
+  
+    moveClick(evt){
+      let position =  this.getMousePos(this.canvas, evt);
+      var ctx = this.canvas.getContext('2d');
+      if(this.down){
+        ctx.lineTo(position.x, position.y); //point d'arrivée
+        this.signature = true;
       }
-    
-      debutClick(){this.down = true;}
-    
-      finClick(){this.down = false;}
-    
-      moveClick(evt){
-        let position =  this.getMousePos(this.canvas, evt);
-        var ctx = this.canvas.getContext('2d');
-        if(this.down){
-          ctx.lineTo(position.x, position.y); //point d'arrivée
-          this.signature = true;
-        }
-          ctx.stroke();  // fin de dessin
-          ctx.beginPath();// debut de dessin
-          ctx.moveTo(position.x, position.y); //point de départ
-      }
-          /**
+        ctx.stroke();  // fin de dessin
+        ctx.beginPath();// debut de dessin
+        ctx.moveTo(position.x, position.y); //point de départ
+    }
+    /**
      * récup la position du curseur dans le canvas
      * taille canvas - postion top et left
      * @param {HTML_Element} canvas 
@@ -60,27 +60,27 @@ class signature{
     }
 
     valider(){
-        if(this.signature){
-          
-          let time = new Date().getTime();
-          this.localData.addReservation({
-            signature:true,
-            dateReservation:time
-          });
-          document.location.reload(true);
-        }else{
-          this.canvas.style.border = '2px solid red';
-        }
+      if(this.signature){
+        
+        let time = new Date().getTime();
+        this.localData.addReservation({
+          signature:true,
+          dateReservation:time
+        });
+        document.location.reload(true);
+      }else{
+        this.canvas.style.border = '2px solid red';
+      }
     }
 
     annuler(){
-        this.localData.localStorageRemove();
-        document.location.reload(true);
+      this.localData.localStorageRemove();
+      document.location.reload(true);
     }
 
     effacer(){
-        this.clearCanvas();
-        this.signature = false;
+      this.clearCanvas();
+      this.signature = false;
     }
 
     /**
