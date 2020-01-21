@@ -1,4 +1,6 @@
-class carousel{
+"use strict";
+
+class Carousel{
   /**
    * @param  {HTMLElement} element
    * @param  {objetJson} data objet json 
@@ -12,11 +14,15 @@ class carousel{
     this.nbData = 0;
     this.intervalCarousel = null;
     this.playinterval = true;
-    this.creatCarouselItem(this.container);
-    this.creatBt(childRoot);
+    this.create_Carousel_Item(this.container);
+    this.create_Bt(childRoot);
+    document.addEventListener('keydown',(e)=>
+    {
+      this.controlKeyboard(e);
+    });
   }
 
-  creatCarouselItem(container){
+  create_Carousel_Item(container){
     this.data.getDataCarousel().forEach(element => {
       let item = this.interface.creatDivClassInterface({htmlElement:'figure',className:'carousel__Item',elementParent:container});
       this.interface.creatImgInterface({src:element.URL,elementParent:item});
@@ -25,13 +31,27 @@ class carousel{
     });
   }
 
-  creatBt(elementParent){
+  create_Bt(elementParent){
     let prev = this.interface.creatDivClassInterface({className:'carousel__prev',elementParent:elementParent});
     prev.addEventListener('click',this.prev.bind(this));
     let next = this.interface.creatDivClassInterface({className:'carousel__next',elementParent:elementParent});
     next.addEventListener('click',this.next.bind(this));
     let play = this.interface.creatDivClassInterface({className:'carousel__play',elementParent:elementParent});
     play.addEventListener('click',this.play.bind(this));
+  }
+
+  controlKeyboard(e){
+    switch(e.code){
+      case 'KeyP':
+        this.play()
+        break;
+      case 'ArrowRight':
+        this.next()
+        break;
+      case 'ArrowLeft':
+        this.prev();
+        break;
+    }
   }
 
   next(){

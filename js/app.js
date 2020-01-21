@@ -3,7 +3,7 @@ class app{
   constructor(){
     this.reservation = new reservationManager();
     this.map = new leafletMaps('#map');
-    this.carousel = new carousel(document.querySelector('#slider'));
+    this.carousel = new Carousel(document.querySelector('#slider'));
     this.localData = new localData();
     this.infoReservation = document.querySelector('#infoReservation');
     this.active = false;
