@@ -20,10 +20,11 @@ class reservationManager{
               })
 
               var btback = this.interface.creatDivClassInterface({
-                  htmlElement:'button',
-                  className:'btBack',
-                  contenu:'Annuler',
-                  elementParent:$element});
+                htmlElement:'button',
+                className:'btBack',
+                contenu:'Annuler',
+                elementParent:$element}
+              );
   
               btback.addEventListener('click',()=>{this.localData.localStorageRemove({relaod:true})});
           }else{

@@ -50,7 +50,7 @@ class leafletMaps{
           .on('click', ()=>{
             this.interface.afficheStation(station);
             this.map.setView(station.position, 16);
-            this.addpopup(station)
+            this.addpopup(station);
           })
             
           .addTo(this.map);
