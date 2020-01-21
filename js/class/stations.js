@@ -1,8 +1,9 @@
+"use strict";
 class Station{
 
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){
-      this.interface = new interfaceUser();
-      this.resevation = new reservationManager();
+      this.interface = new InterfaceUser();
+      this.resevation = new ReservationManager();
       this.number = number;
       this.name = this.nameChange(name);
       this.adresse = adresse;

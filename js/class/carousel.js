@@ -6,14 +6,14 @@ class Carousel{
    * @param  {objetJson} data objet json 
    */
   constructor(element){
-    this.interface = new interfaceUser();
-    let childRoot = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
-    this.container = this.interface.creatDivClassInterface({className:'carouselContainer',elementParent:childRoot});
-    this.index = 0;
-    this.data = new data();
-    this.nbData = 0;
-    this.intervalCarousel = null;
-    this.playinterval = true;
+    this.interface  = new InterfaceUser();
+    let childRoot   = this.interface.creatDivClassInterface({className:'carousel',elementParent:element});
+    this.container  = this.interface.creatDivClassInterface({className:'carouselContainer',elementParent:childRoot});
+    this.index      = 0;
+    this.data       = new Data();
+    this.nbData     = 0;
+    this.intervalCarousel   = null;
+    this.playinterval       = true;
     this.createCarouselItem(this.container);
     this.createBtn(childRoot);
     document.addEventListener('keydown',(e)=>

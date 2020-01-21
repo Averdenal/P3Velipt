@@ -1,4 +1,5 @@
-class reservation{
+"use strict";
+class Reservation{
     constructor(){
         this.nomStation= null;
         this.dateReservation= null;

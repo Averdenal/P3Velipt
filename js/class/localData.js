@@ -1,20 +1,19 @@
-class localData{
+"use strict";
+class LocalData{
     constructor(){
-        this.interface = new interfaceUser();
+        this.interface = new InterfaceUser();
     }
-    
-    localStorageRemove(option = {}){
+    addLocalStorageReservation(option = {}){
         let fOption = Object.assign({
-            relaod:false
-        },option)
-        localStorage.removeItem('resaStation');
-        localStorage.removeItem('resaTime');
-        localStorage.removeItem('prenom');
-        localStorage.removeItem('nom');
-        localStorage.removeItem('signature');
-        if(fOption.relaod === true){
-            document.location.reload(true);
-        }
+            nom:'',
+            prenom:''
+        },option) 
+            if(localStorage.getItem('nom') === '' || localStorage.getItem('nom') === null){
+                localStorage.setItem('nom',fOption.nom)
+            }
+            if(localStorage.getItem('prenom') === '' ||localStorage.getItem('prenom') === null){
+                localStorage.setItem('prenom',fOption.prenom)
+            }
     }
 
     /**
@@ -26,35 +25,27 @@ class localData{
      * @param {string} option.prenom
      * @param {string} option.signature
      */
-    addReservation(option = {}){
+    addSessionStorageReservation(option = {}){
         let fOption = Object.assign({
             nomStation:'',
             dateReservation:'',
-            nom:'',
-            prenom:'',
             signature:'false'
         },option) 
-        if(localStorage.getItem('signature') === 'false' || localStorage.getItem('signature') === null){
-            if(localStorage.getItem('resaStation') === ''|| localStorage.getItem('resaStation') === null){
-                localStorage.setItem('resaStation',fOption.nomStation)
+        if(sessionStorage.getItem('signature') === 'false' || sessionStorage.getItem('signature') === null){
+            if(sessionStorage.getItem('resaStation') === ''|| sessionStorage.getItem('resaStation') === null){
+                sessionStorage.setItem('resaStation',fOption.nomStation);
             }
-            if(localStorage.getItem('resaTime') === '' || localStorage.getItem('resaTime') === null){
-                localStorage.setItem('resaTime',fOption.dateReservation)
+            if(sessionStorage.getItem('resaTime') === '' || sessionStorage.getItem('resaTime') === null){
+                sessionStorage.setItem('resaTime',fOption.dateReservation);
             }
-            if(localStorage.getItem('nom') === '' || localStorage.getItem('nom') === null){
-                localStorage.setItem('nom',fOption.nom)
-            }
-            if(localStorage.getItem('prenom') === '' ||localStorage.getItem('prenom') === null){
-                localStorage.setItem('prenom',fOption.prenom)
-            }
-            if(localStorage.getItem('signature')!=='true'){
-                localStorage.setItem('signature',fOption.signature)
+            if(sessionStorage.getItem('signature')!=='true'){
+                sessionStorage.setItem('signature',fOption.signature);
             }
         }
     }
 
     getReservation(){
-        let myReservation = new reservation();
+        let myReservation = new Reservation();
         myReservation.nomStation=localStorage.getItem('resaStation');
         myReservation.dateReservation= localStorage.getItem('resaTime');
         myReservation.prenom=localStorage.getItem('prenom');

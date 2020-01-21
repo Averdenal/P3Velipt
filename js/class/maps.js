@@ -1,11 +1,12 @@
-class leafletMaps{
+"use strict";
+class LeafletMaps{
     constructor($map){
       this.map = null;
       this.bounds = [];
       this.station = null;
-      this.data = new data();
+      this.data = new Data();
       this.$map = document.querySelector($map);
-      this.interface = new interfaceUser();
+      this.interface = new InterfaceUser();
     }
     /**
      * Initialisation de la map avec les données (marker)

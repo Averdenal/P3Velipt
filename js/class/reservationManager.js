@@ -1,8 +1,9 @@
-class reservationManager{
+"use strict";
+class ReservationManager{
     constructor(){
-        this.interface = new interfaceUser();
-        this.localData = new localData();
-        this.canvas = new signatureManager();
+        this.interface = new InterfaceUser();
+        this.localData = new LocalData();
+        this.canvas = new SignatureManager();
         this.dateReservation = null;
     }
 

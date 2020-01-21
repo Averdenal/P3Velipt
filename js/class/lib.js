@@ -1,5 +1,5 @@
 "use strict";
-class interfaceUser{
+class InterfaceUser{
 
     /**
      * création d'élements HTML avec class et ID 
@@ -52,6 +52,7 @@ class interfaceUser{
         };
         return $element;
     }
+    
     /**
      * création d'une image
      * @param {objet} option 
@@ -126,6 +127,6 @@ class interfaceUser{
             });
         });
 
-        new reservationManager().uiReservation(document.getElementById('reservation'),station.veloDispo,station.name);
+        new ReservationManager().uiReservation(document.getElementById('reservation'),station.veloDispo,station.name);
     }
 }

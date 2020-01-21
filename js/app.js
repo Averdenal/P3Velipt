@@ -1,10 +1,11 @@
+"use strict";
 class app{
 
   constructor(){
-    this.reservation = new reservationManager();
-    this.map = new leafletMaps('#map');
+    this.reservation = new ReservationManager();
+    this.map = new LeafletMaps('#map');
     this.carousel = new Carousel(document.querySelector('#slider'));
-    this.localData = new localData();
+    this.localData = new LocalData();
     this.infoReservation = document.querySelector('#infoReservation');
     this.active = false;
   }

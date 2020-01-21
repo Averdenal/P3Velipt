@@ -1,4 +1,5 @@
-class signature{
+"use strict";
+class Signature{
 
     constructor(){
         this.canvas = null;

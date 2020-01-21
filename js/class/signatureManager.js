@@ -1,7 +1,8 @@
+"use strict";
 class signatureManager{
   constructor(){
-    this.interface = new interfaceUser();
-    this.signature = new signature();
+    this.interface = new InterfaceUser();
+    this.signature = new Signature();
   }
 
   CreatZoneSignature(element,nom, prenom){
