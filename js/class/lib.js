@@ -15,7 +15,7 @@ class InterfaceUser{
      * @param {bool} option.raz vide le contenu d'un element HTML
      * @param {String} option.placeholder
      */
-    creatDivClassInterface(option = {}){
+    createDivClassInterface(option = {}){
         let optionCreat = Object.assign({
             htmlElement:'div',
             className:'',
@@ -24,7 +24,8 @@ class InterfaceUser{
             elementParent:'',
             raz:false,
             required:false,
-            placeholder:''
+            placeholder:'',
+            value:''
 
         },option);
 
@@ -50,6 +51,7 @@ class InterfaceUser{
         if(optionCreat.htmlElement === 'input'){
             $element.placeholder = optionCreat.placeholder;
         };
+        $element.setAttribute('value',optionCreat.value);
         return $element;
     }
     
@@ -59,7 +61,7 @@ class InterfaceUser{
      * @param {string} option.src 
      * @param {string} option.alt 
      */
-    creatImgInterface(option = {}){
+    createImgInterface(option = {}){
         let optionCreat = Object.assign({
             src:'',
             alt:'image',
@@ -119,7 +121,7 @@ class InterfaceUser{
 
         tabInfoZone.forEach(element => {
             var $element = document.querySelector(element.query);
-            this.creatDivClassInterface({
+            this.createDivClassInterface({
             htmlElement:'p',
             contenu:element.contenu,
             raz:true,

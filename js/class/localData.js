@@ -7,13 +7,9 @@ class LocalData{
         let fOption = Object.assign({
             nom:'',
             prenom:''
-        },option) 
-            if(localStorage.getItem('nom') === '' || localStorage.getItem('nom') === null){
-                localStorage.setItem('nom',fOption.nom)
-            }
-            if(localStorage.getItem('prenom') === '' ||localStorage.getItem('prenom') === null){
-                localStorage.setItem('prenom',fOption.prenom)
-            }
+        },option);
+            localStorage.setItem('nom',fOption.nom)
+            localStorage.setItem('prenom',fOption.prenom)
     }
 
     /**
@@ -46,12 +42,25 @@ class LocalData{
 
     getReservation(){
         let myReservation = new Reservation();
-        myReservation.nomStation=localStorage.getItem('resaStation');
-        myReservation.dateReservation= localStorage.getItem('resaTime');
-        myReservation.prenom=localStorage.getItem('prenom');
-        myReservation.nom=localStorage.getItem('nom');
-        myReservation.signature=localStorage.getItem('signature');
+        myReservation.nomStation=sessionStorage.getItem('resaStation');
+        myReservation.dateReservation= sessionStorage.getItem('resaTime');
+        myReservation.signature=sessionStorage.getItem('signature');
+        if(localStorage.getItem('prenom') === null){
+            myReservation.prenom = '';
+        }else{
+            myReservation.prenom=localStorage.getItem('prenom');
+        }
+        if(localStorage.getItem('nom') === null){
+            myReservation.nom = '';
+        }else{
+            myReservation.nom=localStorage.getItem('nom');
+        }
         return myReservation;
+    }
+    sessionStorageRemove(){
+        sessionStorage.removeItem('resaStation');
+        sessionStorage.removeItem('resaTime');
+        sessionStorage.removeItem('signature');
     }
 }
     

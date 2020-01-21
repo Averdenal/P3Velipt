@@ -5,13 +5,14 @@ class ReservationManager{
         this.localData = new LocalData();
         this.canvas = new SignatureManager();
         this.dateReservation = null;
+        this.user = this.localData.getReservation();
     }
 
     footerInformationReservationActif($element){
       let myReservation = this.localData.getReservation();
         if(myReservation.isSignatureOK()){
           if(!myReservation.isReservationCanceled()){
-            this.interface.creatDivClassInterface({
+            this.interface.createDivClassInterface({
               htmlElement:'p',
               contenu: myReservation.nom+" "+ myReservation.prenom +
                 ". Votre reservation de vélo sur la station "+myReservation.nomStation+
@@ -20,14 +21,14 @@ class ReservationManager{
               elementParent:$element
               })
 
-              var btback = this.interface.creatDivClassInterface({
+              var btback = this.interface.createDivClassInterface({
                 htmlElement:'button',
                 className:'btBack',
                 contenu:'Annuler',
                 elementParent:$element}
               );
   
-              btback.addEventListener('click',()=>{this.localData.localStorageRemove({relaod:true})});
+              btback.addEventListener('click',()=>{this.localData.sessionStorageRemove({relaod:true})});
           }else{
               this.localData.localStorageRemove();
           }
@@ -54,25 +55,26 @@ class ReservationManager{
         this.interface.razHtmlElement($element);
         if(localStorage.getItem('signature') === null && veloDispo>0){
           var tabinfo = [
-            {placeholder:'votre nom',id:'nom'},
-            {placeholder:'votre prénom',id:'prenom'}];
-          let $form = this.interface.creatDivClassInterface({
+            {placeholder:'votre nom',id:'nom',value:this.user.nom},
+            {placeholder:'votre prénom',id:'prenom',value:this.user.prenom}];
+          let $form = this.interface.createDivClassInterface({
             htmlElement:'form',
             elementParent:$element
           })
           tabinfo.forEach(element => {
-            this.interface.creatDivClassInterface({
+            this.interface.createDivClassInterface({
               htmlElement:'input',
               elementParent:$form,
               idName:element.id,
               placeholder:element.placeholder,
               className:'input__Reservation',
-              required:true
+              required:true,
+              value:element.value
               
             });
           });     
     
-            let btinput = this.interface.creatDivClassInterface({
+            let btinput = this.interface.createDivClassInterface({
             htmlElement:'button',
             elementParent:$form,
             contenu:"Réserver",
@@ -95,10 +97,12 @@ class ReservationManager{
         nom.value = nom.value.toUpperCase();
         if(!this.interface.verifInputVide(prenom) && !this.interface.verifInputVide(nom)){
           this.interface.changeBodyFilter();
-          this.localData.addReservation({
-            nomStation:nomStation,
+          this.localData.addLocalStorageReservation({
             nom:nom.value,
             prenom:prenom.value
+          });
+          this.localData.addSessionStorageReservation({
+            nomStation:nomStation,
           });
 
           var canvaszone = document.getElementById('canvas');

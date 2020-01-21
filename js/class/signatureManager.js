@@ -1,12 +1,12 @@
 "use strict";
-class signatureManager{
+class SignatureManager{
   constructor(){
     this.interface = new InterfaceUser();
     this.signature = new Signature();
   }
 
   CreatZoneSignature(element,nom, prenom){
-    this.interface.creatDivClassInterface({
+    this.interface.createDivClassInterface({
       htmlElement:'p',
       contenu:"Bonjour, "+nom+" "+prenom+"<br />Une simple signature pour valider votre réservation",
       elementParent:element
@@ -19,12 +19,12 @@ class signatureManager{
    * Création des boutons et vérification signature
    */
   creaCanvasSignaturevalide(){
-    let div = this.interface.creatDivClassInterface({
+    let div = this.interface.createDivClassInterface({
       htmlElement:'div',
       className:"flex-container",
       idName:"canvasZoneBt"
     });
-    let btClean = this.interface.creatDivClassInterface({
+    let btClean = this.interface.createDivClassInterface({
         htmlElement:'button',
         contenu:'Effacer',
         idName:'effacer',
@@ -33,7 +33,7 @@ class signatureManager{
       });
       btClean.addEventListener('click',()=>{this.signature.effacer();})
 
-    let btValider = this.interface.creatDivClassInterface({
+    let btValider = this.interface.createDivClassInterface({
       htmlElement:'button',
       contenu:'Valider',
       idName:'valider',
@@ -42,7 +42,7 @@ class signatureManager{
     });
     btValider.addEventListener('click',()=>{this.signature.valider();})
 
-    let btAnnuler = this.interface.creatDivClassInterface({
+    let btAnnuler = this.interface.createDivClassInterface({
       htmlElement:'button',
       contenu:'Annuler',
       idName:'annuler',

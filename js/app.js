@@ -12,10 +12,6 @@ class app{
 
   init(){
     this.carousel.play()
-  
-    if(this.localData.getReservation().nom !== null && this.localData.getReservation().signature !== "true"){
-      this.localData.localStorageRemove();
-    }
     this.map.initMaps();
     this.reservation.actualistationReservationInfo(this.infoReservation);
     this.minMenu();

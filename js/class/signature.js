@@ -3,7 +3,7 @@ class Signature{
 
     constructor(){
         this.canvas = null;
-        this.localData = new localData();
+        this.localData = new LocalData();
         this.signature = false;
         this.down = false;
     }
@@ -64,7 +64,7 @@ class Signature{
       if(this.signature){
         
         let time = new Date().getTime();
-        this.localData.addReservation({
+        this.localData.addSessionStorageReservation({
           signature:true,
           dateReservation:time
         });
@@ -75,7 +75,7 @@ class Signature{
     }
 
     annuler(){
-      this.localData.localStorageRemove();
+      this.localData.sessionStorageRemove();
       document.location.reload(true);
     }
 
