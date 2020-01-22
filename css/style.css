@@ -134,6 +134,7 @@ header nav ul li{
 .carouselItem img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 .carouselItemInfo{
     position: absolute;
