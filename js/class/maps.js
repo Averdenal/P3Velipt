@@ -1,4 +1,4 @@
-"use strict";
+
 class LeafletMaps{
     constructor($map){
       this.map = null;

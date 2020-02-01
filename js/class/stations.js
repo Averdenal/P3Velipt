@@ -1,4 +1,3 @@
-"use strict";
 class Station{
 
     constructor(number,name,adresse,position,status, veloDispo, maxPlaces){

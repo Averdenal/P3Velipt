@@ -1,4 +1,4 @@
-"use strict";
+
 class SignatureManager{
   constructor(){
     this.interface = new InterfaceUser();

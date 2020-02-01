@@ -1,4 +1,4 @@
-"use strict";
+
 class Data{
     constructor(){
         this.dataAPI = "https://api.jcdecaux.com/vls/v1/stations?contract=nantes&apiKey=096983f1e05f95e3c792a500e2499e840cf58f2d";

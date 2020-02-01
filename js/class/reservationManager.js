@@ -1,4 +1,4 @@
-"use strict";
+
 class ReservationManager{
     constructor(){
         this.interface = new InterfaceUser();
