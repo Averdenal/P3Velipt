@@ -65,7 +65,7 @@ class Signature{
         
         let time = new Date().getTime();
         this.localData.addSessionStorageReservation({
-          signature:true,
+          signature:'true',
           dateReservation:time
         });
         document.location.reload(true);

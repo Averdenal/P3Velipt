@@ -53,7 +53,8 @@ class ReservationManager{
      */
     uiReservation($element,veloDispo,nomStation){
         this.interface.razHtmlElement($element);
-        if(localStorage.getItem('signature') === null && veloDispo>0){
+        let myReservation = this.localData.getReservation();
+        if(!myReservation.isSignatureOK() && veloDispo>0){
           var tabinfo = [
             {placeholder:'votre nom',id:'nom',value:this.user.nom},
             {placeholder:'votre prénom',id:'prenom',value:this.user.prenom}];

@@ -16,7 +16,7 @@ class Reservation{
      */
     timeLeft(){
         let time = new Date().getTime()
-        let dateFinReservation = (parseInt(this.dateReservation)+(30*60000));
+        let dateFinReservation = (parseInt(this.dateReservation)+(20*60000));
         return dateFinReservation - time;
     }
     /**

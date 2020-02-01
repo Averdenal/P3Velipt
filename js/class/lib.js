@@ -128,7 +128,7 @@ class InterfaceUser{
             elementParent:$element
             });
         });
-
+        
         new ReservationManager().uiReservation(document.getElementById('reservation'),station.veloDispo,station.name);
     }
 }
