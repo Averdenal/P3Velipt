@@ -6,6 +6,7 @@ class Signature{
         this.localData = new LocalData();
         this.signature = false;
         this.down = false;
+        this.ctx = null;
     }
 
     createSignatureCanvas(){
@@ -24,42 +25,26 @@ class Signature{
       return this.canvas;
     }
     
-    startClick(){this.down = true;}
-  
-    endClick(){this.down = false;}
-
-    moveClick1(evt) {
-      evt.preventDefault();
-      var touches = evt.changedTouches;
-      var ctx = this.canvas.getContext('2d');
-      ctx.lineWidth = 4;
-            
-      for (var i=0; i<touches.length; i++) {
-        var color = colorForTouch(touches[i]);
-        var idx = ongoingTouchIndexById(touches[i].identifier);
-    
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
-        ctx.lineTo(touches[i].pageX, touches[i].pageY);
-        ctx.closePath();
-        ctx.stroke();
-        ongoingTouches.splice(idx, 1, touches[i]);  // mettre à jour la liste des touchers
-      }
+    startClick(){
+      this.down = true;
     }
+  
+    endClick(){
+      this.down = false;
+      this.ctx.beginPath();
+    }
+
+
     moveClick(evt){
-      evt.preventDefault();
+      
       let position =  this.getMousePos(this.canvas, evt);
-      var ctx = this.canvas.getContext('2d');
-      ctx.closePath();
+      this.ctx = this.canvas.getContext('2d');
       if(this.down){
-        ctx.lineTo(position.x, position.y); //point d'arrivée
-        this.signature = true;
-        
+        this.ctx.lineTo(position.x, position.y);
+        this.signature = true;        
       }
-        ctx.stroke();  // fin de dessin
-        ctx.beginPath();// debut de dessin
-        ctx.moveTo(position.x, position.y); //point de départ
+      this.ctx.stroke();
+      this.ctx.moveTo(position.x, position.y); //point de départ
     }
     /**
      * récup la position du curseur dans le canvas
@@ -69,15 +54,15 @@ class Signature{
      */
     getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect(); //position du canvas dans la page 
-        if (evt.type === "mousemove"){
+        if (evt.type == "mousemove"){
           return {
             x: evt.clientX - rect.left,
             y: evt.clientY - rect.top
           };
         }else{
           return {
-            x: evt.touches['0'].clientX - rect.left,
-            y: evt.touches['0'].clientY - rect.top
+            x: evt.changedTouches[0].clientX - rect.left,
+            y: evt.changedTouches[0].clientY - rect.top
           };
         }
     }
