@@ -10,7 +10,7 @@ class Signature{
 
     createSignatureCanvas(){
       this.canvas = document.createElement('canvas');
-      this.canvas.setAttribute('width','450px');
+      this.canvas.setAttribute('width','350px');
       this.canvas.setAttribute('height','200px');
   
       this.canvas.onmousedown = () =>{this.startClick();}
@@ -27,13 +27,35 @@ class Signature{
     startClick(){this.down = true;}
   
     endClick(){this.down = false;}
-  
+
+    moveClick1(evt) {
+      evt.preventDefault();
+      var touches = evt.changedTouches;
+      var ctx = this.canvas.getContext('2d');
+      ctx.lineWidth = 4;
+            
+      for (var i=0; i<touches.length; i++) {
+        var color = colorForTouch(touches[i]);
+        var idx = ongoingTouchIndexById(touches[i].identifier);
+    
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+        ctx.lineTo(touches[i].pageX, touches[i].pageY);
+        ctx.closePath();
+        ctx.stroke();
+        ongoingTouches.splice(idx, 1, touches[i]);  // mettre à jour la liste des touchers
+      }
+    }
     moveClick(evt){
+      evt.preventDefault();
       let position =  this.getMousePos(this.canvas, evt);
       var ctx = this.canvas.getContext('2d');
+      ctx.closePath();
       if(this.down){
         ctx.lineTo(position.x, position.y); //point d'arrivée
         this.signature = true;
+        
       }
         ctx.stroke();  // fin de dessin
         ctx.beginPath();// debut de dessin
@@ -54,8 +76,8 @@ class Signature{
           };
         }else{
           return {
-            x: evt.targetTouches['0'].clientX - rect.left,
-            y: evt.targetTouches['0'].clientY - rect.top
+            x: evt.touches['0'].clientX - rect.left,
+            y: evt.touches['0'].clientY - rect.top
           };
         }
     }

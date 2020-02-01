@@ -30,7 +30,7 @@ class ReservationManager{
   
               btback.addEventListener('click',()=>{this.localData.sessionStorageRemove({relaod:true})});
           }else{
-              this.localData.localStorageRemove();
+              this.localData.sessionStorageRemove();
           }
             
         }

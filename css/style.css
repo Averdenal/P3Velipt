@@ -258,6 +258,7 @@ header nav ul li{
     flex-wrap: wrap;
     transition: .5s;
 }
+
 #canvas p{
     text-align: center;
     width: 100%;
@@ -268,7 +269,7 @@ header nav ul li{
 }
 
 #canvas canvas{
-    margin: 20px;
+    margin: 20px auto;
     border: 2px solid black;
 }
 #canvas #canvasZoneBt{
@@ -382,4 +383,17 @@ footer{
         flex:1 100%;
         padding:10px;
     }
+    #canvas{
+        width: 100%;
+        height: 350px;
+    }
+    #canvas p{
+        font-size: 1em;
+    }
+    #canvas canvas{
+        margin: 0;
+        border: 2px solid black;
+    }
+
+
 }
