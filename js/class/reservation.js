@@ -8,13 +8,13 @@ class Reservation{
         this.signature= null;
     }
 
-    isReservationCanceled(){
-        return 0 > this.tempRestant();
+    isCanceled(){
+        return 0 > this.timeLeft();
     }
     /**
      * retourne le temps restant 
      */
-    tempRestant(){
+    timeLeft(){
         let time = new Date().getTime()
         let dateFinReservation = (parseInt(this.dateReservation)+(30*60000));
         return dateFinReservation - time;
@@ -22,8 +22,8 @@ class Reservation{
     /**
      * temps restant en minute et secondes
      */
-    getDetailTempsRestant(){
-      let restantTime = this.tempRestant();
+    getDetailTimeLeft(){
+      let restantTime = this.timeLeft();
       return {
           m:new Date(restantTime).getMinutes(),
           s:new Date(restantTime).getSeconds()

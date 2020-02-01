@@ -79,6 +79,7 @@ class Carousel{
       clearInterval(this.intervalCarousel)
       this.playinterval = !this.playinterval
     }else{
+      document.getElementById('animIcon')
       this.intervalCarousel = setInterval(()=>{
         this.index++
         if(this.index === this.nbData){

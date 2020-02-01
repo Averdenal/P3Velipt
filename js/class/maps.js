@@ -49,7 +49,7 @@ class LeafletMaps{
         
         L.marker(station.position,{icon: this.selectIcon(station.veloDispo,station.maxPlaces)})
           .on('click', ()=>{
-            this.interface.afficheStation(station);
+            this.interface.showStation(station);
             this.map.setView(station.position, 16);
             this.addpopup(station);
           })

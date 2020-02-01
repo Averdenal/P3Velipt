@@ -5,20 +5,20 @@ class SignatureManager{
     this.signature = new Signature();
   }
 
-  CreatZoneSignature(element,nom, prenom){
+  CreateZoneSignature(element,nom, prenom){
     this.interface.createDivClassInterface({
       htmlElement:'p',
       contenu:"Bonjour, "+nom+" "+prenom+"<br />Une simple signature pour valider votre réservation",
       elementParent:element
     });
 
-    element.appendChild(this.signature.creaCanvasSignature());
-    element.appendChild(this.creaCanvasSignaturevalide());
+    element.appendChild(this.signature.createSignatureCanvas());
+    element.appendChild(this.createCanvasSignaturevalide());
   }
   /**
    * Création des boutons et vérification signature
    */
-  creaCanvasSignaturevalide(){
+  createCanvasSignaturevalide(){
     let div = this.interface.createDivClassInterface({
       htmlElement:'div',
       className:"flex-container",
@@ -31,7 +31,7 @@ class SignatureManager{
         className:'bt',
         elementParent:div
       });
-      btClean.addEventListener('click',()=>{this.signature.effacer();})
+      btClean.addEventListener('click',()=>{this.signature.delete();})
 
     let btValider = this.interface.createDivClassInterface({
       htmlElement:'button',
@@ -40,7 +40,7 @@ class SignatureManager{
       className:'bt',
       elementParent:div
     });
-    btValider.addEventListener('click',()=>{this.signature.valider();})
+    btValider.addEventListener('click',()=>{this.signature.check();})
 
     let btAnnuler = this.interface.createDivClassInterface({
       htmlElement:'button',
@@ -49,7 +49,7 @@ class SignatureManager{
       className:'bt',
       elementParent:div
     });
-    btAnnuler.addEventListener('click',()=>{this.signature.annuler();});
+    btAnnuler.addEventListener('click',()=>{this.signature.cancel();});
     return div;
   }
 

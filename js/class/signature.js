@@ -8,25 +8,25 @@ class Signature{
         this.down = false;
     }
 
-    creaCanvasSignature(){
+    createSignatureCanvas(){
       this.canvas = document.createElement('canvas');
       this.canvas.setAttribute('width','450px');
       this.canvas.setAttribute('height','200px');
   
-      this.canvas.onmousedown = () =>{this.debutClick();}
-      this.canvas.onmouseup = () =>{this.finClick();}
+      this.canvas.onmousedown = () =>{this.startClick();}
+      this.canvas.onmouseup = () =>{this.endClick();}
       this.canvas.onmousemove = (evt)=>{this.moveClick(evt);};
   
-      this.canvas.ontouchstart = () =>{this.debutClick();}
-      this.canvas.ontouchend = () =>{this.finClick();}
+      this.canvas.ontouchstart = () =>{this.startClick();}
+      this.canvas.ontouchend = () =>{this.endClick();}
       this.canvas.ontouchmove = (evt)=>{this.moveClick(evt);};
           
       return this.canvas;
     }
     
-    debutClick(){this.down = true;}
+    startClick(){this.down = true;}
   
-    finClick(){this.down = false;}
+    endClick(){this.down = false;}
   
     moveClick(evt){
       let position =  this.getMousePos(this.canvas, evt);
@@ -60,7 +60,7 @@ class Signature{
         }
     }
 
-    valider(){
+    check(){
       if(this.signature){
         
         let time = new Date().getTime();
@@ -74,12 +74,12 @@ class Signature{
       }
     }
 
-    annuler(){
+    cancel(){
       this.localData.sessionStorageRemove();
       document.location.reload(true);
     }
 
-    effacer(){
+    delete(){
       this.clearCanvas();
       this.signature = false;
     }

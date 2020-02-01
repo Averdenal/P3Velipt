@@ -91,7 +91,7 @@ class InterfaceUser{
      * change la couleur de border si la zone est vide
      * @param {HTML_Element} element input element
      */
-    verifInputVide(element){
+    isEmpty(element){
         if(element.value === ""){
             element.classList.add('false')
             return true;
@@ -112,7 +112,7 @@ class InterfaceUser{
      * afficher les informations de la station
      * @param {Objet} station 
      */
-    afficheStation(station){
+    showStation(station){
         var tabInfoZone = [
             {query:'#nbStation',contenu:"Station : "+station.number},
             {query:'#nomStation',contenu:station.name},

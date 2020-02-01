@@ -8,16 +8,16 @@ class ReservationManager{
         this.user = this.localData.getReservation();
     }
 
-    footerInformationReservationActif($element){
+    footerInformationActivReservation($element){
       let myReservation = this.localData.getReservation();
         if(myReservation.isSignatureOK()){
-          if(!myReservation.isReservationCanceled()){
+          if(!myReservation.isCanceled()){
             this.interface.createDivClassInterface({
               htmlElement:'p',
               contenu: myReservation.nom+" "+ myReservation.prenom +
                 ". Votre reservation de vélo sur la station "+myReservation.nomStation+
-                " reste active pendant "+myReservation.getDetailTempsRestant().m+":"
-                +myReservation.getDetailTempsRestant().s,
+                " reste active pendant "+myReservation.getDetailTimeLeft().m+":"
+                +myReservation.getDetailTimeLeft().s,
               elementParent:$element
               })
 
@@ -42,7 +42,7 @@ class ReservationManager{
     actualistationReservationInfo($inforesa){
         setInterval(()=>{
             this.interface.razHtmlElement($inforesa);
-            this.footerInformationReservationActif($inforesa);
+            this.footerInformationActivReservation($inforesa);
         },1000);
     }
     /**
@@ -95,7 +95,7 @@ class ReservationManager{
         var prenom = document.getElementById('prenom');
         var nom = document.getElementById('nom');
         nom.value = nom.value.toUpperCase();
-        if(!this.interface.verifInputVide(prenom) && !this.interface.verifInputVide(nom)){
+        if(!this.interface.isEmpty(prenom) && !this.interface.isEmpty(nom)){
           this.interface.changeBodyFilter();
           this.localData.addLocalStorageReservation({
             nom:nom.value,
@@ -107,7 +107,7 @@ class ReservationManager{
 
           var canvaszone = document.getElementById('canvas');
           canvaszone.style.display = "flex";          
-          this.canvas.CreatZoneSignature(canvaszone,nom.value, prenom.value);
+          this.canvas.CreateZoneSignature(canvaszone,nom.value, prenom.value);
         }
         event.stopPropagation();
     }
