@@ -22,8 +22,8 @@ class app{
     min_menu.addEventListener('click',()=>{
      this.activeMinMenu();
     })
-    
   }
+  
   activeMinMenu(){
     let min__menu__open = document.querySelector('#min__Menu');
 
