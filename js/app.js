@@ -1,4 +1,4 @@
-class app{
+class App{
 
   constructor(){
     this.reservation = new ReservationManager();
